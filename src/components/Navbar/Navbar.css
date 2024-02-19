@@ -1,0 +1,46 @@
+/* styles.css */
+.custom-navbar-collapse {
+    background-color: white !important;
+  }
+  .nav-container-style {
+    width: 100%;
+    background-color: #0A233F;
+    border-top-right-radius: 3rem;
+    border-bottom-left-radius: 3rem;
+    box-shadow: 10px 40px 48px rgba(8, 123, 185, 0.1); /* Adjust the shadow as needed */
+  }
+  
+
+  .login-button{
+    font-size: 1.5rem !important;
+    background-color: white !important;
+    color: #0A233F !important;
+    border-radius: 5px;
+    width: 8rem;
+    margin-bottom: 5px;
+    text-align: center;
+  }
+
+  .nav-style {
+    font-size: 1.5rem !important;
+    color: white !important;
+  }
+
+  .nav-dropdown{
+    font-size: 1.5rem;
+    color: #0A233F;
+  }
+  .nav-dropdown-title > .dropdown-toggle {
+    color: white !important;
+    font-size: 1.5rem !important;
+
+  }
+
+  .login-button:hover{
+    /* box-shadow: inset -10.5em 0 0 0 red, inset 10.5em 0 0 0 red ; */
+    background-color: #30D1FF !important;
+    box-shadow: 0 0 5px #30D1FF, 0 0 25px #30D1FF, 0 0 50px #30D1FF, 0 0 200px #30D1FF;
+    color: white !important;
+  }
+  
+  

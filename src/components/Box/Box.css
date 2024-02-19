@@ -1,0 +1,18 @@
+.BOX{
+    background-color: blue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 15vh;
+    margin-left: 2rem;
+    width: 13%;
+    border-radius: 10px;
+    gap: 1rem;
+}
+
+.BOX-Title ,.BOX-Number {
+    margin-top: 1rem;
+    font-size: 1.4rem;
+    color: white;
+
+}

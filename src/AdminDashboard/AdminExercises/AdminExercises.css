@@ -1,0 +1,77 @@
+.exercises-container {
+    padding: 1rem 2rem;
+    display: flex;  
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 10px;
+    align-items: center;
+
+}
+
+.Loader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.exercise-display{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+}
+
+.Exercise-Button {
+    width:fit-content;
+    padding: 0 1.5rem;
+}
+
+.trash-icon-size {
+    background:     transparent !important;
+    color: #0A233F !important;
+    border: none !important;
+    font-size: 1.6rem !important;
+    cursor: pointer; 
+    }
+
+    .icons-container {
+        display: flex;
+        justify-content: space-around;
+    }
+
+.gif{
+    height: 13rem;
+}
+
+.select-exercise{
+    height: 2.2rem;
+    border-radius: 5px;
+    background-color: #0A233F;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.button-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+@media screen and ( max-width: 768px ) {
+    .exercises-container {
+        padding: 1rem 0; 
+}
+.button-container{
+    gap: 5px;
+    flex-direction: column;
+    
+}
+
+}
+

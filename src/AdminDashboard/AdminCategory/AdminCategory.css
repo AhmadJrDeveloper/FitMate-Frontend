@@ -1,0 +1,49 @@
+.Category-Container{
+display: flex;
+flex-direction: column;
+width: 100%;
+padding: 1rem 2rem;
+gap: 1rem;
+}
+
+.Category-Button {
+    align-self: flex-start;
+    width: 10%;
+}
+
+.Category-Table {
+    width: 30%;
+}
+
+
+/* In AdminCategory.css */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+
+}
+  
+  .custom-table th,
+  .custom-table td {
+    padding: 1rem;
+    border: 1px solid #0A233F;
+    text-align: center; /* Center the content horizontally */
+  }
+  
+  .custom-table th {
+    background-color: #0A233F;
+    color: #fff;
+  }
+  
+  .action-icons-container {
+    display: flex;
+    justify-content: center; /* Center the icons horizontally */
+    align-items: center; /* Center the icons vertically */
+  }
+  
+  .action-icon {
+    font-size: 1.6rem; /* Adjust the icon size as needed */
+    cursor: pointer; /* Add pointer cursor to indicate interactivity */
+    margin: 0 5px; /* Add margin around the icons */
+  }
+  

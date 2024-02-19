@@ -1,0 +1,125 @@
+.HomeLanding-Main {
+    font-family: 'Titillium Web', sans-serif;
+    display: flex;
+    background: transparent;
+    padding: 0 1rem;
+}
+
+.HomeLanding-Title{
+    font-size: 280px;
+    font-weight: bold;
+    width: 250px;
+    margin: 5px;
+    height: 330px;
+    background-color: transparent;
+}
+
+.HomeLanding-Image {
+    background: transparent;
+    width: 70%;
+    height: 700px;
+    margin-left: 130px;
+    margin-top: 120px;
+    z-index: 1;
+}
+
+.HomeLanding-Titles {
+      padding-left: 3rem;
+      background: transparent;
+}
+
+
+.HomeLanding-SubTitle{
+    font-weight: bold;
+    font-size: larger;
+    padding-left: 10px;
+    background: transparent;
+}
+
+.HomeLanding-Button{
+    font-size: 20px;
+    width: 120px;
+    height: 40px;
+    background: none;
+    border: 1px solid;
+    border-radius: 20px;
+    margin-left: 10px;
+}
+
+
+.HomeLanding-Title::after{
+    content: '.';
+    color: transparent;
+    border-radius: 200px;
+    width: 400px;
+    background-color: blue;
+    font-size: 250px;
+    padding-right: 10px;
+    position: absolute;
+    margin-left:650px ;
+    top: 315px; 
+    z-index: -1 ;
+
+}
+
+.HomeLanding-Button{
+    font-size: 20px;
+    width: 120px;
+    height: 40px;
+    background: none;
+    border: 1px solid;
+    border-radius: 20px;
+    margin-left: 10px;
+}
+
+
+
+@media only screen and (max-width: 1024px) {
+    .HomeLanding-Title::after {
+        display: none;
+    }
+    .HomeLanding-Main {
+        display: flex;
+        background:transparent;        
+    }
+
+    .HomeLanding-Title {
+        font-size: 70px;  
+        background: transparent;
+        height: 80px;
+    }
+    .HomeLanding-SubTitle{
+        font-weight: bold;
+        font-size: large;
+        padding-left: 10px;
+        background: transparent;
+        position: relative;
+        z-index: 2;    }
+    .HomeLanding-Image {
+        background: transparent;      
+        width: 50%;
+        margin-left: 140px ;
+        margin-top: 35px;
+        position: absolute;
+        height: 250px;
+        overflow-x: hidden;
+    }
+
+    .HomeLanding-Title::before{
+        content: '.';
+        color: transparent;
+        border-radius: 200px;
+        background-color: rgb(185, 238, 77);
+        height: 110px;
+        width: 110px;
+        font-size: 300px;
+        position: absolute;
+        margin-left: 200px;
+        margin-top: 80px;
+        z-index: 1;
+    }
+    .HomeLanding-Titles {
+        padding-left:0 ;        
+  }
+  
+}

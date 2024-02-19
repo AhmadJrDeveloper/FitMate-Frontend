@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;700&display=swap');
+
+.NavBar-Header{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Titillium Web', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    padding: 0 6rem;
+    background-color: #0A233F;
+}
+
+
+nav a {
+    padding: 0 1rem;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+
+.NavBar-Header .nav-btn{
+    padding: 5px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+    visibility: hidden;
+    opacity: 0;
+}
+
+
+.Header-Logo{
+    display: flex;
+    align-items: center;
+    
+}
+
+.Header-Logo-Image{
+    width: 5rem;
+}
+
+.Header-Logo-H3{
+    padding-left: 3px;
+    color: white;
+}
+
+.active {
+    color: #D5DD5A;
+   }
+  
+
+@media only screen and (max-width: 1024px) {
+
+    .NavBar-Header .nav-btn{
+        width: 40px;
+        height: 37px;
+        color: #a7a6a6;
+        visibility: visible;
+        opacity: 1;
+        border: 1px solid #a7a6a6;
+        border-radius: 5px;
+    }
+
+    .NavBar-Header nav{
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        transition: 1s;
+        transform: translateY(-150vh);
+        z-index: 100; 
+        background-color: #0A233F; /* Add background color here */
+
+
+    }
+
+
+    .NavBar-Header .responsive_nav{
+        transform: none;
+    }
+
+    nav .nav-close-btn{
+        color: #a7a6a6;
+
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+    }
+    nav a{
+        font-size: 1.5rem;
+    }
+    .NavBar-Header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 80px;
+        padding: 0 1rem;
+    }
+
+}

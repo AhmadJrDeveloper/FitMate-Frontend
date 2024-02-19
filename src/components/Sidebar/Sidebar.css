@@ -1,0 +1,12 @@
+.nav-pills li a:hover {
+    color: #0A233F !important;
+    background-color: white;
+}
+.mini-side-logo{
+    font-size: 2rem;
+    display: inline-flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+

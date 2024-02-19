@@ -1,0 +1,8 @@
+.update-pen {
+    background: transparent !important;
+    color: #0A233F !important;
+    border: none !important;
+    font-size: 1.6rem !important;
+    cursor: pointer; 
+    width: fit-content;
+}
