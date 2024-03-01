@@ -1,3 +1,5 @@
+
+@import url('../../colors.css');
 .exercises-container {
     padding: 1rem 2rem;
     display: flex;  
@@ -31,7 +33,7 @@
 
 .trash-icon-size {
     background:     transparent !important;
-    color: #0A233F !important;
+    color: var(--primary-color) !important;
     border: none !important;
     font-size: 1.6rem !important;
     cursor: pointer; 
@@ -49,7 +51,7 @@
 .select-exercise{
     height: 2.2rem;
     border-radius: 5px;
-    background-color: #0A233F;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     cursor: pointer;
@@ -74,4 +76,13 @@
 }
 
 }
+
+.admin-card-title{
+    font-size: 1.5rem !important;
+}
+
+.pagination-number {
+    color: rgb(201,34,34) !important;
+   }
+   
 

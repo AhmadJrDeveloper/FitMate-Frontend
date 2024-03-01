@@ -1,3 +1,5 @@
+@import url('../../colors.css');
+
 .Category-Container{
 display: flex;
 flex-direction: column;
@@ -26,12 +28,12 @@ gap: 1rem;
   .custom-table th,
   .custom-table td {
     padding: 1rem;
-    border: 1px solid #0A233F;
+    border: 1px solid var(--primary-color);
     text-align: center; /* Center the content horizontally */
   }
   
   .custom-table th {
-    background-color: #0A233F;
+    background-color: var(--primary-color);
     color: #fff;
   }
   
@@ -45,5 +47,6 @@ gap: 1rem;
     font-size: 1.6rem; /* Adjust the icon size as needed */
     cursor: pointer; /* Add pointer cursor to indicate interactivity */
     margin: 0 5px; /* Add margin around the icons */
+    color: var(--primary-color);
   }
   

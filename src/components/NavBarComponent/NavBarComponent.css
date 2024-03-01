@@ -10,7 +10,11 @@
     justify-content: space-between;
     height: 80px;
     padding: 0 6rem;
-    background-color: #0A233F;
+    background-color: black;
+}
+
+.span-color{
+    color:rgb(201, 34, 34)
 }
 
 
@@ -49,7 +53,7 @@ nav a {
 }
 
 .active {
-    color: #D5DD5A;
+    color: rgb(201, 34, 34);
    }
   
 
@@ -77,9 +81,9 @@ nav a {
         justify-content: center;
         gap: 1.5rem;
         transition: 1s;
-        transform: translateY(-150vh);
+        transform: translateY(-200vh);
         z-index: 100; 
-        background-color: #0A233F; /* Add background color here */
+        background-color: black;
 
 
     }

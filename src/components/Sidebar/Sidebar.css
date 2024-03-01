@@ -1,5 +1,6 @@
+@import url('../../colors.css');
 .nav-pills li a:hover {
-    color: #0A233F !important;
+    color: var(--primary-color) !important;
     background-color: white;
 }
 .mini-side-logo{

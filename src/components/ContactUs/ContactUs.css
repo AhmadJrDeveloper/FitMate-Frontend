@@ -1,0 +1,118 @@
+
+@import url('../../colors.css');
+
+.Contact-Home-Parent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    /* font-family: 'Poppins', sans-serif; */
+}
+
+
+.form-label {
+    color: white;
+    font-size: 2rem;
+    font-family: 'Titillium Web', sans-serif;
+
+}
+
+.Contact-Home-Parent-Image {
+    width: 40%; /* Adjusted for better balance */
+    height: 77.5vh;
+    border-radius: 0.7rem;
+}
+
+.Contact-Home-Parent-Form {
+    width: 30%; /* Adjusted for better balance */
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 20px;
+    flex-direction: column;
+    justify-content: center;
+    /* background-color: white; Lighter background for better contrast */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    border-radius: 16px; /* Rounded corners */
+    background-image: url('../../assets/contactus.jpg');
+}
+
+.Contact-Home-Parent-Form input,
+.Contact-Home-Parent-Form textarea {
+    background-color: transparent;
+    width: 100%;
+    margin: 10px 0; 
+    border: none;
+    border: 1.5px solid var(--primary-color); 
+    border-radius: 8px;
+    padding: 15px; 
+    font-size: 1.5rem; 
+    color: var(--primary-color) !important; 
+    background-color: transparent !important;
+
+
+}
+
+.Contact-Home-Parent-Form input:focus{
+    outline: none !important;
+    border-color: var(--primary-color);
+}
+
+.Contact-Input-Label {
+    text-align: left; /* Align to the left for natural reading flow */
+    margin: 10px 0;
+    font-size: 18px; /* Larger font size for readability */
+}
+
+
+
+
+
+.Contact-Form-Header {
+    color: white;
+    font-size: 36px; /* Larger font size for importance */
+    text-align: center; /* Centered heading */
+    margin-top: 1rem;
+}
+
+/* Add this media query for responsiveness */
+@media (max-width: 768px) {
+    .Contact-Home-Parent {
+        flex-direction: column; /* Stack the logo and form on smaller screens */
+        justify-content: flex-start; /* Align to the start */
+        height: auto; /* Height auto for smaller screens */
+        padding: 20px; /* Add some padding */
+    }
+
+    .Contact-Home-Parent-Image {
+       display: none;
+    }
+
+    .Contact-Home-Parent-Form {
+        width: 100%; /* Form takes full width on smaller screens */
+        padding: 20px; /* Adjust padding */
+    }
+}
+
+/* Modify the text area height */
+.Contact-Home-Parent-Form textarea {
+    height: 200px; /* Make the text area larger */
+    color: red;
+    font-size: 1.5rem;
+}
+.Contact-Home-Parent-Form textarea:focus {
+background: transparent;
+outline: none;
+color: var(--primary-color);
+border-color: var(--primary-color);
+}
+
+.Contact-Home-Parent-Form textarea::placeholder , .Contact-Home-Parent-Form input::placeholder {
+    color: var(--primary-color);
+    }
+
+/* Ensure the content doesn't overlap with the navbar or footer */
+.Contact-Main {
+    padding-top: 70px; /* Adjust top padding to not overlap the navbar */
+    padding-bottom: 70px; /* Adjust bottom padding to not overlap the footer */
+    min-height: calc(100vh - 140px); /* Adjust the min-height */
+}

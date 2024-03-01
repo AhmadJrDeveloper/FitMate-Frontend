@@ -1,7 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;700&display=swap');
+
+
 *{
   /* margin: 0;
   padding: 0; */
   cursor: url('./assets//dumbell.png');
+  
+  font-family: 'Titillium Web', sans-serif;
 
 }
 

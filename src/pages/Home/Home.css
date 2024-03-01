@@ -1,3 +1,4 @@
-/* .home-container {
-    background-color: red;
-} */
+.home-container {
+overflow: hidden;
+background-color: black;
+}

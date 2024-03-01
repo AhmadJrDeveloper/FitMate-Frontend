@@ -1,0 +1,16 @@
+@import url('../../colors.css');
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  
+
+
+
+.list-unstyled li{
+    text-decoration: none !important;
+}

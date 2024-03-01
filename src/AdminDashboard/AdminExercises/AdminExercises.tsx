@@ -7,9 +7,10 @@ import ModalButton from "../../components/Modal/Modal";
 import Card from "react-bootstrap/Card";
 import { FaTrash } from "react-icons/fa";
 import UpdateModal from "../../components/UpdateModal/UpdateModal";
+import ExerciseModal from "./ExerciseModal"; // Import the modal component
 import "./AdminExercises.css";
 
-interface Exercise {
+export interface Exercise {
   _id: string;
   name: string;
   gif: string;
@@ -26,6 +27,9 @@ interface Category {
 }
 
 const AdminExercises = () => {
+  const [selectedExercise, setSelectedExercise] = useState<Exercise | null>(
+    null
+  ); // State to track the selected exercise
   const [data, setData] = useState<Exercise[] | null>(null);
   const [categories, setCategories] = useState<Category[] | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(
@@ -33,6 +37,8 @@ const AdminExercises = () => {
   );
   const [currentPage, setCurrentPage] = useState(1);
   const [exercisesPerPage] = useState(10);
+  const [showModal, setShowModal] = useState(false); // State to track modal visibility
+  const [modalExercise, setModalExercise] = useState<Exercise | null>(null); // State to store the exercise for the modal
   const apiUrl = import.meta.env.VITE_APP_API_URL;
 
   const handleCategoryFilterChange = (categoryId: string) => {
@@ -51,6 +57,11 @@ const AdminExercises = () => {
     };
     fetchCategories();
   }, [apiUrl]);
+
+  const handleExerciseClick = (exercise: Exercise) => {
+    setModalExercise(exercise); // Set the selected exercise for the modal
+    setShowModal(true); // Open the modal
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -167,6 +178,13 @@ const AdminExercises = () => {
   // Change page
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
+  const truncateDescription = (description: string) => {
+    if (description.length > 37) {
+      return description.substring(0, 30) + "...";
+    }
+    return description;
+ };
+
   return (
     <div className="exercises-container">
       {data === null || categories === null ? (
@@ -175,6 +193,14 @@ const AdminExercises = () => {
         </div>
       ) : (
         <>
+          {/* Modal for showing exercise details */}
+          {modalExercise && (
+            <ExerciseModal
+              show={showModal}
+              exercise={modalExercise}
+              onClose={() => setShowModal(false)} // Close modal function
+            />
+          )}
           <div className="button-container">
             <div className="Exercise-Button">
               <ModalButton
@@ -217,15 +243,21 @@ const AdminExercises = () => {
           </div>
           <div className="exercise-display">
             {currentExercises.map((exercise: Exercise, index: number) => (
-              <Card key={index} style={{ width: "18rem" }}>
+              <Card
+                key={index}
+                style={{ width: "18rem" }}
+                onClick={() => handleExerciseClick(exercise)} // Add onClick event to open modal
+              >
                 <Card.Img
                   className="gif"
                   variant="top"
                   src={`http://localhost:4000/uploads/${exercise.gif}`}
                 />
                 <Card.Body>
-                  <Card.Title>{exercise.name}</Card.Title>
-                  <Card.Text>{exercise.description}</Card.Text>
+                  <Card.Title className="admin-card-title">
+                    {exercise.name}
+                  </Card.Title>
+                  <Card.Text>{truncateDescription(exercise.description)}</Card.Text> {/* Use the helper function here */}
                   <Card.Text>{exercise.category.name}</Card.Text>
                   <div className="icons-container">
                     <UpdateModal
@@ -270,22 +302,22 @@ const AdminExercises = () => {
           </div>
           {/* Pagination */}
           <nav>
-            <ul className="pagination">
-              {[...Array(Math.ceil(filteredData.length / exercisesPerPage)).keys()].map(
-                (number) => (
-                  <li key={number} className="page-item">
-                    <a
-                      onClick={() => paginate(number + 1)}
-                      href="#"
-                      className="page-link"
-                    >
-                      {number + 1}
-                    </a>
-                  </li>
-                )
-              )}
-            </ul>
-          </nav>
+      <ul className="pagination">
+        {[...Array(Math.ceil(filteredData.length / exercisesPerPage)).keys()].map(
+          (number) => (
+            <li key={number} className="page-item">
+              <a
+                onClick={() => paginate(number + 1)}
+                href="#"
+                className="page-link pagination-number" // Apply the CSS class here
+              >
+                {number + 1}
+              </a>
+            </li>
+          )
+        )}
+      </ul>
+    </nav>
         </>
       )}
     </div>

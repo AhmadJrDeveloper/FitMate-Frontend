@@ -5,8 +5,13 @@ import './index.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import 'bootstrap/js/dist/dropdown'
+import {Provider} from 'react-redux'
+import { AuthProvider } from './utils/AuthContext.tsx'
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.Fragment>
-    <App />
+    
+    <AuthProvider>
+      <App />
+      </AuthProvider>
   </React.Fragment>,
 )

@@ -94,7 +94,7 @@ function UpdateModal({
                   className="mb-3"
                   controlId={`field-${index}`}
                 >
-                  <Form.Label>{field.label}</Form.Label>
+  <Form.Label style={{ color: 'black' }}>{field.label}</Form.Label>
                   {field.type === "select" ? (
                     <Form.Control
                       as="select"

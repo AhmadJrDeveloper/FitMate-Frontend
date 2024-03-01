@@ -1,14 +1,12 @@
-.Modal-Style{
-
-}
+@import url('../../colors.css');
 
 .Submit-Button {
-    background-color: #0A233F !important ;
-    border: #0A233F !important;
+    background-color: black !important ;
+    border: var(--primary-color) !important;
 }
 
 .Submit-Button:hover {
-    background-color: #0A233F;
+    background-color: var(--primary-color);
 }
 
   

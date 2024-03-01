@@ -1,0 +1,119 @@
+@import url(../../colors.css);
+.Hero-Container {
+    height: 100vh;
+    background-image: url('../../assets/KUmtY1.webp');
+    background-repeat: no-repeat; /* Prevent the background image from repeating */
+    background-color: black;
+    background-size: cover;
+}
+
+
+.HomeLanding-Titles{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.HomeLanding-Title{
+  margin-top: 2rem;
+    font-size: 12rem;
+    color: white;
+}
+
+.HomeLanding-SubTitle{
+    color: white;
+    font-size: 4rem;
+}
+
+.HomeLanding-Button{
+    width: 15rem;
+    border: none;
+    font-size: 2rem;
+    background-color: white;
+    color:rgb(201, 34, 34);
+    height: 4rem;
+    border-radius: 2rem;
+    margin-left:  11rem;
+    margin-top: 3rem;
+}
+
+.HomeLanding-Button:hover{
+  /* box-shadow: inset -10.5em 0 0 0 red, inset 10.5em 0 0 0 red ; */
+  background-color: rgb(201, 34, 34) !important;
+  box-shadow: 0 0 5px rgb(201, 34, 34), 0 0 25px rgb(201, 34, 34), 0 0 50px rgb(201, 34, 34), 0 0 200px rgb(201, 34, 34);
+  color: white !important;
+}
+
+.span-color {
+    color: var(--primary-color);
+}
+
+.HomeLanding-Image{
+    width: 45%;
+    height: 91vh;
+    background: transparent;
+}
+
+@keyframes typing {
+    from {
+      opacity: 0;
+      transform: translateY(-50%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .HomeLanding-Title span,
+  .HomeLanding-SubTitle span {
+    opacity: 0;
+    animation: typing 1.5s forwards;
+  }
+  
+  .HomeLanding-Title span:nth-child(1) {
+    animation-delay: 0s;
+  }
+  .HomeLanding-Title span:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  .HomeLanding-Title span:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+  .HomeLanding-Title span:nth-child(4) {
+    animation-delay: 0.3s;
+  }
+  
+
+@media (max-width:  768px) {
+    .Hero-Container {
+        background-size: 130vi; /* or 'contain' if you prefer */
+        background-position: center; 
+        height:  40vh;
+    }
+    .HomeLanding-Titles{
+        width: fit-content;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .HomeLanding-Title{
+        font-size: 4rem;
+        color: white;
+    }
+    
+    .HomeLanding-SubTitle{
+        color: white;
+        font-size: 1rem;
+    }
+    .HomeLanding-Button{
+        width: 6rem;
+        font-size: 1rem;
+        margin-left: 0;
+        height:3rem;
+        margin-left: 1rem;
+        margin-top: 0;
+    }
+}

@@ -1,16 +1,32 @@
-import Logo from "../../assets/logo.png";
+import Logo from "../../assets/newlogo.jpeg";
 import { FaDumbbell } from "react-icons/fa";
 import { FaList } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useInfo } from "../../utils/AuthContext";
 
 import "./Sidebar.css";
 const Sidebar = () => {
+  const navigate = useNavigate();
+  const context = useInfo();
+if (!context) {
+    throw new Error('Login component must be used within an AuthProvider');
+}
+const { type, name, setAuth } = context;
+
+const handleLogout = () => {
+    setAuth(false);    
+    localStorage.removeItem('token');
+    navigate('/')
+
+}
+
+
   return (
     <div className="row ">
       <div
-        className="bg-dark-custom col-auto col-md-2.5 min-vh-100  d-flex justify-content-between flex-column"
-        style={{ backgroundColor: "#0A233F" }}
+        className="bg-dark-custom col-auto col-md-12 min-vh-100  d-flex justify-content-between flex-column"
+        style={{ backgroundColor: "black" }}
       >
         <div>
           <div className="d-flex justify-content-center">
@@ -26,9 +42,9 @@ const Sidebar = () => {
           </div>
           <a className="text-decoration-none text-white d-flex d-none d-sm-inline align-itemcenter ms-3 mt-2">
             <i className="fs-4 ms-2">
-              <span className="ms-2 fs-2 d-none d-sm-inline">
+              <span className="ms-2 fs-1 d-none d-sm-inline">
                 {" "}
-                Hello, Admin
+                Hello,{type}
               </span>
             </i>
           </a>
@@ -38,21 +54,21 @@ const Sidebar = () => {
               <Link to="/admin/categories" className="nav-link text-white fs-5"> 
                 {/* <i className="bi bi-speedometer2 fs-2"></i> */}
                 <FaList className="mini-side-logo" />
-                <span className="ms-2 fs-2 d-none d-sm-inline">Categories</span>
+                <span className="ms-2 fs-3 d-none d-sm-inline">Categories</span>
               </Link>
             </li>
             <li className="nav-item text-white fs-4 my-1 py-2 py-sm-0">
               <Link to="/admin/exercises" className="nav-link text-white fs-5">
                 {/* <i className="bi bi-emoji-running fs-2"></i> */}
                 <FaDumbbell className="mini-side-logo" />
-                <span className="ms-2 fs-2 d-none d-sm-inline">Exercises</span>
+                <span className="ms-2 fs-3 d-none d-sm-inline">Exercises</span>
               </Link>
             </li>
             <li className="nav-item text-white fs-4 my-1 py-2 py-sm-0">
               <Link to="/admin/users" className="nav-link text-white fs-5">
                 {/* <i className="bi bi-person fs-2"></i> */}
                 <FaUser className="mini-side-logo" />
-                <span className="ms-2 fs-2 d-none d-sm-inline">Users</span>
+                <span className="ms-2 fs-3 d-none d-sm-inline">Users</span>
               </Link>
             </li>
           </ul>
@@ -67,10 +83,10 @@ const Sidebar = () => {
             aria-expanded="false"
           >
             <i className="bi bi-person-circle fs-4"></i>{" "}
-            <span className="ms-2 fs-4 d-none d-sm-inline">a7mad l sa3ed</span>
+            <span className="ms-2 fs-4 d-none d-sm-inline">{name}</span>
           </a>
           <div className="dropdown-menu" aria-labelledby="triggerId">
-            <a className="dropdown-item" href="#">
+            <a className="dropdown-item" onClick={handleLogout}>
               Logout
             </a>
           </div>

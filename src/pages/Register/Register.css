@@ -1,0 +1,96 @@
+@import url('../../colors.css');
+
+.register-container {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.inputs-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.register-form {
+    background-color: white;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    height: 80vh;
+    border-radius: 10px;
+    gap: 10px;
+}
+
+.register-header {
+    color: var(--primary-color);
+    font-size: 5rem;
+}
+
+.register-input-field {
+    width: 30vw;
+    height: 5vh;
+    border-radius: 2px;
+    border: none;
+    border-bottom: 1px var(--primary-color) solid;
+}
+
+.register-input-field:focus{
+    border-radius:10px ;
+    outline: none;
+    border: 1px;
+    color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(0,255,0,.2),
+                inset 0 0 5px rgba(0,255,0,.1);
+    animation: glow .8s ease-out infinite alternate;
+  }
+  @keyframes glow {
+     0%{
+      border-color: var(--primary-color);
+      box-shadow: 0 0 5px rgba(0,255,0,.2),
+                  inset 0 0 5px rgba(0,0,0,.1);
+    }
+     100%{
+      border-color: var(--primary-color);
+      box-shadow: 0 0 20px var(--primary-color),
+                  inset 0 0 10px var(--primary-color);
+    }
+  }
+
+.register-label{
+    font-size: 2rem;
+}
+
+.register-button {
+    border: none;
+    background-color: var(--primary-color);
+    color: white;
+    width: 10vw;
+    border-radius: 5px;
+    font-size: 1.5rem;    
+}
+
+.register-button:hover{
+    color: #339933;
+  border: 1px solid var(--primary-color);
+  box-shadow: 0 0 5px var(--primary-color),
+              0 0 10px var(--primary-color),
+              0 0 15px var(--primary-color),
+              0 2px 0 black;
+}
+
+.register-input-field[type="date"] {
+color: grey;
+
+}
