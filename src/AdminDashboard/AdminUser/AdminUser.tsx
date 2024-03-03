@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { Card, Button } from "react-bootstrap";
 import ModalButton from "../../components/Modal/Modal";
 import axios from "axios";
-import "./AdminUser.css";
-import {FaTrash } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import Loader from "../../components/Loader/Loader";
+import "./AdminUser.css";
 import UpdateModal from "../../components/UpdateModal/UpdateModal";
 
 interface User {
@@ -14,27 +15,31 @@ interface User {
   type: string;
   firstName: string;
   lastName: string;
+  image: string;
+  insta: string;
+  facebook: string;
 }
 
 const AdminUser = () => {
   const [data, setData] = useState<User[] | null>(null);
+  const [loading, setLoading] = useState<boolean>(true); // Add loading state
   const apiUrl = import.meta.env.VITE_APP_API_URL;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(`${apiUrl}/admins`);
-        console.log(response.data);
         setData(response.data);
       } catch (err) {
         console.log(err);
+      } finally {
+        setLoading(false); // Set loading to false when data fetching is done
       }
     };
     fetchData();
   }, []);
 
   const handleAdd = async (formData: any) => {
-    console.log('the form data is', formData);
     try {
       const add = await axios.post(`${apiUrl}/admins`, formData);
       if (add.status === 200) {
@@ -56,7 +61,7 @@ const AdminUser = () => {
         text: "You won't be able to revert this!",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: "#0A233F",
+        confirmButtonColor: "black",
         cancelButtonColor: "#d33",
         confirmButtonText: "Yes, delete it!",
       });
@@ -72,7 +77,7 @@ const AdminUser = () => {
             title: "Deleted!",
             text: "Your Admin has been deleted.",
             icon: "success",
-            confirmButtonColor: "#0A233F",
+            confirmButtonColor: "black",
           });
         }
       }
@@ -83,23 +88,28 @@ const AdminUser = () => {
   };
 
   const handleUpdate = async (formData: any, id: string) => {
-    console.log(formData);
     try {
-      const updateCategory = await axios.put(
+      const updateAdmin = await axios.put(
         `${apiUrl}/admins/${id}`,
-        formData
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
-      if (updateCategory.status === 200) {
-        setData((prevData: any) => {
-          const updatedData = prevData.map((data: any) => {
+      if (updateAdmin.status === 200) {
+        setData((prevData: User[] | null) => {
+          return prevData?.map((data: User) => {
             if (data._id === id) {
-              return { ...data, ...formData };
+              return { ...data, ...updateAdmin.data };
             }
             return data;
-          });
-          return updatedData;
+          }) || null;
         });
         toast.success("Admin updated successfully!");
+      } else {
+        toast.error("Failed to update admin.");
       }
     } catch (error) {
       console.error(error);
@@ -107,83 +117,113 @@ const AdminUser = () => {
     }
   };
 
-
   return (
-    <div className="Category-Container">
+    <div className="User-Container">
       <div className="Category-Button">
         <ModalButton
           ButtonTitle="Add Admin"
           ModalTitle="Add Admin"
-          fields={[{ label: "Admin Username", stateName: "username", type: "text" }
-        ,{ label: "Admin First Name", stateName: "firstName", type: "text" },
-        { label: "Admin Last Name", stateName: "lastName", type: "text" }
-        ,{ label: "Admin Password", stateName: "password", type: "text" },
-        {
-            label: 'Admin Type',
-            stateName: 'type',
-            type: 'select',
-            options: [
-                { value: 'admin', label: 'Trainer ' },
-                { value: 'trainer', label: ' Admin' }
-            ]
-        }
-        
-    ]}
-
+          fields={[
+            { label: "Admin Username", stateName: "username", type: "text" },
+            { label: "Admin First Name", stateName: "firstName", type: "text" },
+            { label: "Admin Last Name", stateName: "lastName", type: "text" },
+            { label: "Admin Password", stateName: "password", type: "text" },
+            {
+              label: "Admin Type",
+              stateName: "type",
+              type: "select",
+              options: [
+                { value: "admin", label: " Admin" },
+                { value: "trainer", label: " Trainer" },
+              ],
+            },
+            { label: "Admin Image", stateName: "image", type: "file" },
+            { label: "Admin Instagram", stateName: "insta", type: "text" },
+            { label: "Admin FaceBook", stateName: "facebook", type: "text" },
+          ]}
           onSubmit={handleAdd}
         />
       </div>
-      <div className="Category-Table">
-        {data && (
-          <table className="custom-table">
-            <thead>
-              <tr>
-                <th>Username</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Type</th>
-                <th>Edit/Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.map((user: User) => (
-                <tr key={user._id}>
-                  <td>{user.username}</td>
-                  <td>{user.firstName}</td>
-                  <td> {user.lastName}</td>
-                  <td>{user.type}</td>
-                  <td className="action-icons-container">
+      <div className="Admins-Cards">
+        {loading ? ( // Render loader when loading state is true
+          <Loader />
+        ) : data ? ( // Render cards when data is available
+          data.map((user: User) => (
+            <Card key={user._id} className="mb-3" style={{ width: "17.5rem" }}>
+              <img
+                src={`http://localhost:4000/uploads/${user.image}`}
+                className="card-img-top"
+                alt="Admin"
+              />
+              <Card.Body>
+                <Card.Title>{user.username}</Card.Title>
+                <Card.Text>
+                  <strong>First Name:</strong> {user.firstName}
+                  <br />
+                  <strong>Last Name:</strong> {user.lastName}
+                  <br />
+                  <strong>Type:</strong> {user.type}
+                </Card.Text>
+                <div className="d-flex justify-content-between">
                   <UpdateModal
-                      ModalTitle="Update Category"
-                      ButtonTitle="Update"
-                      fields={[{ label: "Admin Username", stateName: "username", type: "text" }
-                      ,{ label: "Admin First Name", stateName: "firstName", type: "text" },
-                      { label: "Admin Last Name", stateName: "lastName", type: "text" },
+                    ModalTitle="Update Admin"
+                    ButtonTitle="Update"
+                    fields={[
                       {
-                          label: 'Admin Type',
-                          stateName: 'type',
-                          type: 'select',
-                          options: [
-                              { value: 'admin', label: ' Admin' },
-                              { value: 'trainer', label: '  Trainer' }
-                          ]
-                      }
-                      
-                  ]}
-                    initialFormValues={{ username: user.username ,firstName:user.firstName
-                    ,lastName:user.lastName, type:user.type}}
-                      onSubmit={(formData: any) => handleUpdate(formData, user._id)}
-                    />
+                        label: "Admin Username",
+                        stateName: "username",
+                        type: "text",
+                      },
+                      {
+                        label: "Admin First Name",
+                        stateName: "firstName",
+                        type: "text",
+                      },
+                      {
+                        label: "Admin Last Name",
+                        stateName: "lastName",
+                        type: "text",
+                      },
+                      {
+                        label: "Admin Type",
+                        stateName: "type",
+                        type: "select",
+                        options: [
+                          { value: "admin", label: " Admin" },
+                          { value: "trainer", label: " Trainer" },
+                        ],
+                      },
+                      { label: "Admin Image", stateName: "image", type: "file" },
+                      {
+                        label: "Admin Instagram",
+                        stateName: "insta",
+                        type: "text",
+                      },
+                      {
+                        label: "Admin FaceBook",
+                        stateName: "facebook",
+                        type: "text",
+                      },
+                    ]}
+                    initialFormValues={{
+                      username: user.username,
+                      firstName: user.firstName,
+                      lastName: user.lastName,
+                      type: user.type,
+                      insta: user.insta,
+                      facebook: user.facebook,
+                      image: user.image,
+                    }}
+                    onSubmit={(formData: any) => handleUpdate(formData, user._id)}
+                  />
+                                    <FaTrash className="trash-icon-size" onClick={() => handleDelete(user._id)} /> {/* Use FaTrash icon */}
 
-                    <FaTrash
-                      className="action-icon"
-                      onClick={() => handleDelete(user._id)}
-                    />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                </div>
+              </Card.Body>
+            </Card>
+          ))
+        ) : (
+          <p>No data available</p>
         )}
       </div>
     </div>

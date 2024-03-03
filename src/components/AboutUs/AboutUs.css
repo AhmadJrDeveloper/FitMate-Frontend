@@ -16,7 +16,6 @@
     color: white;
 }
 
-/* Styles for card-container */
 .card-container {
     display: flex;
     gap: 1rem;
@@ -74,6 +73,12 @@
         margin-bottom: 1rem; /* Adjust spacing between cards */
     }
 }
+
+.about-card:hover {
+    transform: scale(1.05) !important; 
+    transition: transform 0.3s ease !important;
+  }
+  
 
 
 

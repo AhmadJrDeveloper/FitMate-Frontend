@@ -5,7 +5,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    height: 100vh;
+    flex-direction: column;
     /* font-family: 'Poppins', sans-serif; */
 }
 
@@ -69,7 +70,7 @@
 
 .Contact-Form-Header {
     color: white;
-    font-size: 36px; /* Larger font size for importance */
+    font-size: 5rem; /* Larger font size for importance */
     text-align: center; /* Centered heading */
     margin-top: 1rem;
 }
@@ -116,3 +117,52 @@ border-color: var(--primary-color);
     padding-bottom: 70px; /* Adjust bottom padding to not overlap the footer */
     min-height: calc(100vh - 140px); /* Adjust the min-height */
 }
+
+
+    .btn41-43 {
+        padding: 10px 25px;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        background: transparent;
+        outline: none !important;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        display: inline-block;
+        border-radius: 5px;
+      }
+      
+      .btn-41 {
+        border: 2px solid rgb(255, 255, 255);
+        z-index: 1;
+        color: white;
+      }
+      
+      .btn-41:after {
+        position: absolute;
+        content: "";
+        width: 0;
+        height: 100%;
+        top: 0;
+        left: 0;
+        direction: rtl;
+        z-index: -1;
+        background: rgb(255, 255, 255);
+        transition: all 0.3s ease;
+        border-radius: 5px;
+
+      }
+      
+      .btn-41:hover {
+        color: rgb(201,34,34);
+      }
+      
+      .btn-41:hover:after {
+        left: auto;
+        right: 0;
+        width: 100%;
+      }
+      
+      .btn-41:active {
+        top: 2px;
+      }

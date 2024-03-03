@@ -70,11 +70,12 @@ function ContactUs() {
   return (
     <section id="contact-us">
 
-    <div className="Contact-Main" data-aos="fade-left">
+    <div className="Contact-Main" data-aos="fade-bottom">
       <div className="Contact-Home-Parent">
+      <h1 className="Contact-Form-Header">CONTACT <span className="span-color">US</span></h1>
+
         <div className="Contact-Home-Parent-Form">
           <form onSubmit={handleSubmit}>
-          <h1 className="Contact-Form-Header">CONTACT <span className="span-color">US</span></h1>
               <div className="mb-3">
                 <label className="form-label" htmlFor="firstName">
                   First Name
@@ -135,10 +136,20 @@ function ContactUs() {
                   rows={5}
                 ></textarea>
               </div>
-              <div className="d-grid gap-2">
+              {/* <div className="d-grid gap-2">
                 <button
                   type="submit"
                   className="btn btn-primary btn-lg"
+                  style={{ backgroundColor: "rgb(201, 34, 34)", border: "none" }}
+                  disabled={isSubmitting} 
+                >
+                  {isSubmitting ? "Sending..." : "SUBMIT"}
+                </button>
+              </div> */}
+              <div className="d-grid gap-2">
+                <button
+                  type="submit"
+                  className="btn41-43 btn-41"
                   style={{ backgroundColor: "rgb(201, 34, 34)", border: "none" }}
                   disabled={isSubmitting} 
                 >

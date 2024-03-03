@@ -14,14 +14,14 @@ const Hero2 = () => {
         </p>
         <p className="HomeLanding-SubTitle">
           <span>S</span>
-          <span>mall space, </span>
+          <span>mall Space, </span>
           <br />
-          <span>big </span>
+          <span>Big </span>
           <span className='span-color'>M</span>
           <span className='span-color'>A</span>
           <span className='span-color'>T</span>
           <span className='span-color'>E</span>
-          <span> for fitness </span>
+          <span> for Fitness </span>
           <span className='span-color'>G</span>
           <span className='span-color'>O</span>
           <span className='span-color'>A</span>

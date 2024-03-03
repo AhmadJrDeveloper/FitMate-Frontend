@@ -1,3 +1,11 @@
 .schedule-container {
     margin: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.user-card-container{
+    display: flex;
+    
 }

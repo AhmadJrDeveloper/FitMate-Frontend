@@ -40,7 +40,11 @@ function NavBarComponent() {
  return (
     <header className="NavBar-Header">
       <div className="Header-Logo">
+      <RouterLink to ={'/'}>
+
         <img src={Logo} alt="" className="Header-Logo-Image" />
+        </RouterLink>
+
         <h3 className="Header-Logo-H3">
           FIT<span className="span-color">MATE</span>
         </h3>
@@ -59,7 +63,7 @@ function NavBarComponent() {
           duration={0}
           className={selectedLink === "about-us" ? "active" : ""}
         >
-          ABOUT US
+          ABOUT
         </ScrollLink>
         <ScrollLink
           style={{cursor: "pointer"}}
@@ -68,7 +72,7 @@ function NavBarComponent() {
           duration={500}
           className={selectedLink === "contact-us" ? "active" : ""}
         >
-          CONTACT US
+          CONTACT
         </ScrollLink>
         {/* Keep other links as RouterLink */}
         <RouterLink to={"/exercises"} className={selectedLink === "exercises" ? "active" : ""}>

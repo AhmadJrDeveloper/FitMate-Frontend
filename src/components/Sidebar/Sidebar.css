@@ -9,5 +9,25 @@
     flex-direction: row;
     margin-bottom: 10px;
 }
+.custom-side{
+    background-color: black;
+    width: 15% !important;
+}
 
+@media screen and (max-width:768px){
+    .custom-side{
+        width: 20% !important;
+    }
+}
+
+@media screen and (max-width:1024px){
+    .custom-side{
+        width: 25% !important;
+    }
+}
+
+.activee {
+    background-color: rgb(201,34,34); 
+    border-radius: 5px;
+}
 

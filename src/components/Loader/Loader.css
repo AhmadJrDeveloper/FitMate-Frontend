@@ -1,8 +1,7 @@
 .loader {
-    display: block;
-    width: 150px;
-    height: auto;
-  }
+    width: 10rem;
+    height: 90vh;; 
+ }
   
   .loader_body,
     .loader_front,
@@ -14,7 +13,7 @@
     .loader_spokes-spin,
     .loader_tire {
     animation: bikeBody 3s ease-in-out infinite;
-    stroke: var(--primary);
+    stroke: rgb(201,34,34);
     transition: stroke var(--trans-dur);
   }
   

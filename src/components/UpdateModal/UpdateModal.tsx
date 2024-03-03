@@ -63,7 +63,8 @@ function UpdateModal({
         for (const key in formValues) {
           formData.append(key, formValues[key]);
         }
-        await onSubmit(formData, "");
+        
+        await onSubmit(formData, formValues._id);
       }
       handleClose();
     } catch (error) {
@@ -155,10 +156,20 @@ function UpdateModal({
           </Button>
           )}
 
+{ModalTitle === 'Update Admin' && (
+          <Button className="Submit-Button" onClick={handleUpdate}>
+            Update
+          </Button>
+
+          
+          )}
+
           {ModalTitle === 'Update Exercise' && (
           <Button className="Submit-Button" onClick={handleUpdate}>
             Update
           </Button>
+
+          
           )}
         </Modal.Footer>
       </Modal>

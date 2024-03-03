@@ -36,6 +36,8 @@ const AdminCategory = () => {
       if (add.status === 200) {
         setData((prevData: any) => [...prevData, add.data]);
         toast.success("Category added successfully!");
+  
+        formData.name = ""; 
       } else {
         toast.error("Failed to add category.");
       }

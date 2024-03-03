@@ -1,0 +1,41 @@
+.Admins-Cards{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.User-Container{
+    width: 80%;
+    margin-left: 15rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 2rem;
+    gap: 10px;
+}
+
+@media screen and (max-width:640px) {
+    .User-Container{
+        margin-left: 2rem; /* Adjust this margin as per your design */
+        width: 90%;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .User-Container{
+        margin-left: 2rem;
+        width: 90%;
+    }
+    
+}
+
+@media all and (min-width: 769px) and (max-width: 1024px) {
+    .User-Container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 9rem; 
+        width: 80%;
+    }
+  }

@@ -159,7 +159,7 @@
             )}
 
   {ButtonTitle === "Add Admin"  && (
-              <Button className="Submit-Button" onClick={handleAddCategory}>
+              <Button className="Submit-Button" onClick={handleAdd}>
                 Submit
               </Button>
             )}

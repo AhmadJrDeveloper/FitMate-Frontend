@@ -24,6 +24,7 @@
 .HomeLanding-SubTitle{
     color: white;
     font-size: 4rem;
+    margin-left: 3rem;
 }
 
 .HomeLanding-Button{
@@ -100,13 +101,14 @@
     }
     
     .HomeLanding-Title{
-        font-size: 4rem;
+        font-size: 3.2rem;
         color: white;
     }
     
     .HomeLanding-SubTitle{
         color: white;
         font-size: 1rem;
+        margin-left: 0;
     }
     .HomeLanding-Button{
         width: 6rem;

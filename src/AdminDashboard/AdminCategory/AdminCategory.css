@@ -4,8 +4,10 @@
 display: flex;
 flex-direction: column;
 width: 100%;
-padding: 1rem 2rem;
+/* padding: 1rem 2rem; */
 gap: 1rem;
+margin-left: 15rem;
+z-index: 0 !important;
 }
 
 .Category-Button {
@@ -14,7 +16,7 @@ gap: 1rem;
 }
 
 .Category-Table {
-    width: 30%;
+    width: 100%;
 }
 
 
@@ -48,5 +50,16 @@ gap: 1rem;
     cursor: pointer; /* Add pointer cursor to indicate interactivity */
     margin: 0 5px; /* Add margin around the icons */
     color: var(--primary-color);
+  }
+  @media  all and (max-width: 768px) {
+    .Category-Container{
+      
+      margin-left: 2rem;
+      }
+  }
+  @media all and (min-width: 769px) and (max-width: 1024px) {
+    .Category-Container {
+      margin-left: 10rem; 
+    }
   }
   

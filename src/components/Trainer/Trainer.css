@@ -1,0 +1,81 @@
+.trainer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.here {
+    width: 70%;
+}
+
+
+.trainer-title{
+    color: white;
+    font-size: 5rem;
+}
+
+.trainer-card-title {
+    font-size: 4rem !important;
+}
+
+.trainer-card {
+    height: 70vh !important;
+    width: 25rem;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    background-color: black !important;
+    border-color: rgb(201, 34, 34) !important;
+}
+
+.trainer-image {
+    height: 50vh;
+}
+
+.trainer-social-icons {
+    display: flex; 
+    justify-content: space-around;
+}
+
+.icons-ccolor {
+        color: rgb(201,34,34) !important;
+        font-size: 3rem;
+
+}
+
+.icons-ccolor:hover {
+    color: white !important;
+
+}
+
+.carousel-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.carousel-controls button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: transform 0.3s ease;
+}
+
+.carousel-controls button:hover {
+    transform: scale(1.1);
+}
+
+.carousel-controls button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    transition: transform 0.5s ease;
+}

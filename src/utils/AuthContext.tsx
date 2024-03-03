@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
 
-// Define the type for your context value
 type AuthContextType = {
   auth: boolean | null;
   setAuth: React.Dispatch<React.SetStateAction<boolean | null>>;
+  userAuth: boolean | null;
+  setUserAuth: React.Dispatch<React.SetStateAction<boolean | null>>;
   id: string | undefined;
   setId: React.Dispatch<React.SetStateAction<string | undefined>>;
   type: string | null;
@@ -14,7 +15,6 @@ type AuthContextType = {
 };
 
 
-// Create the context with initial value null
 const AuthContext = React.createContext<AuthContextType | null>(null);
 
 interface AuthProviderProps {
@@ -25,7 +25,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [type, setType] = useState<string | null>(null);
   const [auth, setAuth] = useState<boolean | null>(null);
   const [id, setId] = useState<string | undefined>();
-  const [name, setName] = useState<string | null>(null); // Update the initial state for name
+  const [name, setName] = useState<string | null>(null); 
+  const [userAuth, setUserAuth] = useState<boolean | null>(null);
 
 
   useEffect(() => {
@@ -37,18 +38,24 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           console.log(decodedId);
           setId(decodedId.id);
           console.log(decodedId.id);
-          setAuth(true);
+          if (decodedId.type === 'admin' || decodedId.type === 'trainer') {
+            setAuth(true);
+            setUserAuth(false);
+          } else {
+            setAuth(false);
+            setUserAuth(true);
+          }
           setType(decodedId.type);
-          setName(decodedId.firstName+" "+decodedId.lastName);
+          setName(decodedId.firstName + " " + decodedId.lastName);
         } catch (error) {
           console.error('Error decoding token:', error);
-          // Handle invalid or expired token
         }
       }
     };
-
+  
     fetchUserInfo();
   }, []);
+  
 
   console.log(id);
 
@@ -57,10 +64,11 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     console.log('the updated auth in the context', auth);
     console.log('the updated role in the context', type);
     console.log('firstName', name);
-  }, [id, auth, type,name]);
+    console.log('userAUth',userAuth)
+  }, [id, auth, type,name,userAuth]);
 
   return (
-    <AuthContext.Provider value={{ auth, setAuth, id, setId, type, setType,name,setName }}>
+    <AuthContext.Provider value={{ auth, setAuth, id, setId, type, setType,name,setName,userAuth,setUserAuth }}>
       {children}
     </AuthContext.Provider>
   );

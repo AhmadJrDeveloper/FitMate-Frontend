@@ -77,6 +77,7 @@ const AdminExercises = () => {
 
   const handleAdd = async (formData: FormData) => {
     try {
+      
       const add = await axios.post(`${apiUrl}/exercises`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -130,7 +131,9 @@ const AdminExercises = () => {
   };
 
   const handleUpdate = async (formData: any, id: string) => {
+    
     try {
+     
       const updateResponse = await axios.put(
         `${apiUrl}/exercises/${id}`,
         formData,
@@ -186,19 +189,18 @@ const AdminExercises = () => {
  };
 
   return (
-    <div className="exercises-container">
+    <div className="exercises-container" >
       {data === null || categories === null ? (
         <div className="Loader">
           <Loader />
         </div>
       ) : (
         <>
-          {/* Modal for showing exercise details */}
           {modalExercise && (
             <ExerciseModal
               show={showModal}
               exercise={modalExercise}
-              onClose={() => setShowModal(false)} // Close modal function
+              onClose={() => setShowModal(false)} 
             />
           )}
           <div className="button-container">
@@ -245,8 +247,8 @@ const AdminExercises = () => {
             {currentExercises.map((exercise: Exercise, index: number) => (
               <Card
                 key={index}
-                style={{ width: "18rem" }}
-                onClick={() => handleExerciseClick(exercise)} // Add onClick event to open modal
+                style={{ width: "16rem" }}
+                onClick={() => handleExerciseClick(exercise)} 
               >
                 <Card.Img
                   className="gif"
@@ -257,7 +259,7 @@ const AdminExercises = () => {
                   <Card.Title className="admin-card-title">
                     {exercise.name}
                   </Card.Title>
-                  <Card.Text>{truncateDescription(exercise.description)}</Card.Text> {/* Use the helper function here */}
+                  <Card.Text>{truncateDescription(exercise.description)}</Card.Text> 
                   <Card.Text>{exercise.category.name}</Card.Text>
                   <div className="icons-container">
                     <UpdateModal
@@ -300,7 +302,6 @@ const AdminExercises = () => {
               </Card>
             ))}
           </div>
-          {/* Pagination */}
           <nav>
       <ul className="pagination">
         {[...Array(Math.ceil(filteredData.length / exercisesPerPage)).keys()].map(
@@ -309,7 +310,7 @@ const AdminExercises = () => {
               <a
                 onClick={() => paginate(number + 1)}
                 href="#"
-                className="page-link pagination-number" // Apply the CSS class here
+                className="page-link pagination-number"
               >
                 {number + 1}
               </a>

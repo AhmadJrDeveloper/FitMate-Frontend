@@ -110,5 +110,8 @@ nav a {
         height: 80px;
         padding: 0 1rem;
     }
+    .Header-Logo{
+        margin-top: 0;
+    }
 
 }

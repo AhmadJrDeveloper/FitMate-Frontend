@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { FaDumbbell, FaRunning, FaWeight, FaHeartbeat } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { useInfo } from "../../utils/AuthContext";
-import { MdFitnessCenter, MdDirectionsRun } from "react-icons/md";
-
-import "./ExerciseSideBar.css";
 import axios from "axios";
 
-const ExerciseSideBar = ({ onMuscleSelect }) => {
+interface Props {
+  onMuscleSelect: (muscleName: string) => void;
+}
+
+const ExerciseSideBar: React.FC<Props> = ({ onMuscleSelect }) => {
   const navigate = useNavigate();
   const [data, setData] = useState<any[]>([]);
   const [activeMuscle, setActiveMuscle] = useState<any>(null);
@@ -35,19 +35,8 @@ const ExerciseSideBar = ({ onMuscleSelect }) => {
     onMuscleSelect(muscle.name); // Pass the selected muscle name to the parent component
   };
 
-  const shuffleIcons = (): React.ReactNode => {
-    const icons = [
-      <FaDumbbell />,
-      <FaRunning />,
-      <FaWeight />,
-      <FaHeartbeat />,
-    ];
-    const randomIndex = Math.floor(Math.random() * icons.length);
-    return icons[randomIndex];
-  };
-
   return (
-    <div className="row">
+    <div className="col" style={{ width: "100%" }}>
       <div
         className="bg-dark-custom col-auto col-md-12 min-vh-100 d-flex justify-content-between flex-column"
         style={{ backgroundColor: "black" }}
@@ -60,6 +49,10 @@ const ExerciseSideBar = ({ onMuscleSelect }) => {
                 className={`nav-item text-white fs-2 my-1 py-2 py-sm-0 ${
                   activeMuscle === muscle ? "active" : ""
                 }`}
+                style={{
+                  backgroundColor:
+                    activeMuscle === muscle ? "rgb(201, 34, 34)" : "inherit",
+                }}
               >
                 <Link
                   to={muscle.route}
@@ -67,7 +60,12 @@ const ExerciseSideBar = ({ onMuscleSelect }) => {
                   onClick={() => handleMuscleClick(muscle)}
                 >
                   {/* Icon and name */}
-                  <span className="ms-2 fs-2 d-none d-sm-inline">
+                  <span className="ms-2 fs-2 d-sm-block fs-6 d-md-none">
+                    {/* On smaller screens (md and below), use fs-6 */}
+                    {muscle.name}
+                  </span>
+                  <span className="ms-2 fs-2 d-none d-sm-block">
+                    {/* On larger screens (lg and above), use fs-2 */}
                     {muscle.name}
                   </span>
                 </Link>

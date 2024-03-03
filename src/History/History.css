@@ -1,0 +1,14 @@
+.custom-history{
+    width: 18rem;
+    height: 10rem;
+
+}
+
+.history-container {
+    display: flex;
+    margin: 1rem 0;
+    justify-content: space-evenly !important;
+    flex-wrap: wrap;
+    width: 100%;
+
+}
