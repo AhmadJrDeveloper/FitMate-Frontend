@@ -1,4 +1,3 @@
-import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { FaInstagram, FaFacebook } from 'react-icons/fa'; // Import icons
 import { Link as RouterLink } from 'react-router-dom'; // Import RouterLink for other links

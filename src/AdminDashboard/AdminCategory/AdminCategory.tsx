@@ -2,10 +2,9 @@ import { useState, useEffect } from "react";
 import ModalButton from "../../components/Modal/Modal";
 import axios from "axios";
 import "./AdminCategory.css";
-import { FaPen, FaTrash } from "react-icons/fa";
+import {  FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
-import Loader from "../../components/Loader/Loader";
 import UpdateModal from "../../components/UpdateModal/UpdateModal";
 
 interface Category {

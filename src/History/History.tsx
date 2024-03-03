@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useInfo } from '../utils/AuthContext';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure Bootstrap is imported
@@ -7,16 +7,20 @@ import Swal from 'sweetalert2'; // Ensure SweetAlert2 is imported
 import { toast } from 'react-toastify'; // Ensure react-toastify is imported for toast notifications
 import './History.css'
 interface HistoryItem {
- name: string;
- date: string;
- exercise_id: string;
- exercise: Array<{
-    name: string; // Assuming the exercise name is directly accessible
-    sets: number;
-    reps: number;
     _id: string;
- }>;
+    name: string;
+    date: string;
+    exercise: Array<{
+        name: string;
+        sets: number;
+        reps: number;
+        _id: string; // Assuming _id is present within each exercise
+        exercise_id: {
+            name: string; // Adding exercise_id property if it exists
+        };
+    }>;
 }
+
 
 const History = () => {
  const [history, setHistory] = useState<HistoryItem[]>([]);
@@ -49,36 +53,39 @@ const History = () => {
     setShowModal(true);
  };
 
+ // Inside deleteItem function
  const deleteItem = async (itemId: string) => {
     try {
-      const result = await Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "Black",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
-      });
-
-      if (result.isConfirmed) {
-        const deleteResponse = await axios.delete(`${apiUrl}/schedules/${itemId}`);
-        if (deleteResponse.status === 200) {
-          setHistory(history.filter(item => item._id !== itemId));
-          toast.success("Schedule deleted successfully");
-          Swal.fire({
-            title: "Deleted!",
-            text: "Your schedule has been deleted.",
-            icon: "success",
+        const result = await Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
             confirmButtonColor: "Black",
-          });
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+        });
+
+        if (result.isConfirmed) {
+            const deleteResponse = await axios.delete(`${apiUrl}/schedules/${itemId}`);
+            if (deleteResponse.status === 200) {
+                // Filter out the item based on the nested _id
+                setHistory(history.filter(item => item.exercise.some(ex => ex._id === itemId)));
+                toast.success("Schedule deleted successfully");
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your schedule has been deleted.",
+                    icon: "success",
+                    confirmButtonColor: "Black",
+                });
+            }
         }
-      }
     } catch (error) {
-      console.error("Failed to delete schedule:", error);
-      toast.error("Failed to delete schedule.");
+        console.error("Failed to delete schedule:", error);
+        toast.error("Failed to delete schedule.");
     }
- };
+};
+
 
  return (
     <div className="history-container">

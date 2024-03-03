@@ -2,7 +2,6 @@ import  { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import emailjs from "emailjs-com";
-import logoImage from '../../assets/people.avif';
 import './ContactUs.css'
 import AOS from 'aos';
 import 'aos/dist/aos.css';

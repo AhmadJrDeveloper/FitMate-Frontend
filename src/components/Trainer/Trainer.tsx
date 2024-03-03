@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Card } from 'react-bootstrap';
 import { FaInstagram, FaFacebook } from 'react-icons/fa'; // Import Facebook and Instagram icons from react-icons
@@ -11,6 +11,7 @@ interface Trainer {
     image: string;
     insta: string;
     facebook: string;
+    type:string;
 }
 
 const Trainer = () => {

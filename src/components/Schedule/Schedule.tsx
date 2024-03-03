@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import axios from "axios";
 import { Modal, Button } from "react-bootstrap";
 import Loader from "../../components/Loader/Loader";
@@ -47,6 +47,11 @@ const Schedule = () => {
   const [scheduleDate, setScheduleDate] = useState<Date | null>(null); // State for selected date
   const [exerciseDetails, setExerciseDetails] = useState<{ [key: string]: { sets: number, reps: number } }>({});
   const apiUrl = import.meta.env.VITE_APP_API_URL;
+
+  interface ExerciseDetails {
+    sets: number;
+    reps: number;
+  }
 
   const handleCategoryFilterChange = (categoryId: string) => {
     setSelectedCategory(categoryId);
@@ -160,11 +165,10 @@ const Schedule = () => {
 
   const isSelected = (exercise: Exercise) => selectedExerciseIds.includes(exercise._id);
 
-  const handleSaveExerciseDetails = (exerciseId: string, details: { sets: number, reps: number }) => {
+  const handleSaveExerciseDetails = (exerciseId: string, details: ExerciseDetails) => {
     setExerciseDetails({ ...exerciseDetails, [exerciseId]: details });
     setShowModal(false);
   };
-
   return (
     <div className="exercises-container">
       {data === null || categories === null ? (

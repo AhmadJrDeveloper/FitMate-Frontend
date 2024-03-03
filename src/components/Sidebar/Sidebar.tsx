@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useInfo } from '../../utils/AuthContext';
 import { FaDumbbell, FaList, FaUser,FaComments } from 'react-icons/fa';

@@ -35,6 +35,7 @@
               firstName,
               lastName,
           });
+          console.log(add);
           // Show success toast
           toast.success("User registered successfully!");
       } catch (err) {

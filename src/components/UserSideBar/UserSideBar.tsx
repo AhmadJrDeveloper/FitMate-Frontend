@@ -13,7 +13,7 @@ const UserSideBar = () => {
     throw new Error('Login component must be used within an AuthProvider');
   }
 
-  const { type, name, setUserAuth } = context;
+  const {  name, setUserAuth } = context;
 
   const handleLogout = () => {
     setUserAuth(false);    

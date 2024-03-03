@@ -1,5 +1,5 @@
 // UpdateModalButton.tsx
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
@@ -23,7 +23,6 @@ interface UpdateModalButtonProps {
 function UpdateModal({
   ModalTitle,
   fields,
-  ButtonTitle,
   onSubmit,
   initialFormValues,
 }: UpdateModalButtonProps) {

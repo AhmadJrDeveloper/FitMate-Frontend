@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import './SingleChat.css';
 import { Socket } from 'socket.io-client'; // Import the Socket type
 import io from 'socket.io-client';

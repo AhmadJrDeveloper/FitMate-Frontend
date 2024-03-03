@@ -2,15 +2,20 @@ import React from "react";
 import { Modal, Button } from "react-bootstrap";
 import { Exercise } from "./AdminExercises";
 
+interface ExerciseDetails {
+  sets: number;
+  reps: number;
+}
 
 interface ExerciseModalProps {
   show: boolean;
-  exercise: Omit<Exercise, '_id'>; // Omitting _id from Exercise
+  exercise: Exercise;
   onClose: () => void;
+  onSave: (details: ExerciseDetails) => void; // Specify the type for the details parameter
 }
 
 
-const ExerciseModal: React.FC<ExerciseModalProps> = ({ show, exercise, onClose }) => {
+const ExerciseModal: React.FC<ExerciseModalProps> = ({ show, exercise, onClose,  }) => {
   return (
     <Modal show={show} onHide={onClose}>
       <Modal.Header closeButton>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
@@ -25,11 +25,16 @@ interface Category {
   _id: string;
   name: string;
 }
+interface ExerciseDetails {
+  sets: number;
+  reps: number;
+}
+
 
 const AdminExercises = () => {
-  const [selectedExercise, setSelectedExercise] = useState<Exercise | null>(
-    null
-  ); // State to track the selected exercise
+  // const [selectedExercise, setSelectedExercise] = useState<Exercise | null>(
+  //   null
+  // ); // State to track the selected exercise
   const [data, setData] = useState<Exercise[] | null>(null);
   const [categories, setCategories] = useState<Category[] | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(
@@ -198,10 +203,12 @@ const AdminExercises = () => {
         <>
           {modalExercise && (
             <ExerciseModal
-              show={showModal}
-              exercise={modalExercise}
-              onClose={() => setShowModal(false)} 
-            />
+            show={showModal}
+            exercise={modalExercise}
+            onClose={() => setShowModal(false)}
+            onSave={(details: ExerciseDetails) => console.log(details)} // Placeholder function
+          />
+          
           )}
           <div className="button-container">
             <div className="Exercise-Button">
