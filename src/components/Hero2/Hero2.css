@@ -89,9 +89,12 @@
 
 @media (max-width:  768px) {
     .Hero-Container {
-        background-size: 130vi; /* or 'contain' if you prefer */
-        background-position: center; 
-        height:  40vh;
+      background-color: black;
+        background-size: 70rem; 
+        background-position:80%;
+        /* background-position: center;  */
+        /* background-size:cover; */
+        /* height:  fit-content; */
     }
     .HomeLanding-Titles{
         width: fit-content;
@@ -101,17 +104,20 @@
     }
     
     .HomeLanding-Title{
+      display: none;
         font-size: 3.2rem;
         color: white;
     }
     
     .HomeLanding-SubTitle{
         color: white;
-        font-size: 1rem;
-        margin-left: 0;
+        font-size: 1.3rem;
+        margin-left: 1rem;
+        margin-top: 25rem;
+        
     }
     .HomeLanding-Button{
-        width: 6rem;
+        width: 10rem;
         font-size: 1rem;
         margin-left: 0;
         height:3rem;

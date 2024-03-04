@@ -1,4 +1,5 @@
 import './Hero2.css'
+import { Link } from 'react-router-dom'
 const Hero2 = () => {
   return (
     <div className='Hero-Container'>
@@ -30,9 +31,11 @@ const Hero2 = () => {
         </p>
         
       </div>
+      <Link to ={'/exercises'}>
       <button className="HomeLanding-Button">
           Let's Start
         </button>
+        </Link>
 
     </div>
   )

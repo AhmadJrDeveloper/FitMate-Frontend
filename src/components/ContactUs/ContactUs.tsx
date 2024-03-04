@@ -48,7 +48,7 @@ function ContactUs() {
           message: "",
         });
         toast.success("Message sent successfully!", {
-          position: "top-right",
+          position: "top-center",
           autoClose: 3000,
         });
         // After successful submission, reset isSubmitting after 5 seconds
@@ -59,7 +59,7 @@ function ContactUs() {
       .catch((error) => {
         console.error("Error sending email:", error);
         toast.error("Failed to send message. Please try again later.", {
-          position: "top-right",
+          position: "top-center",
           autoClose: 3000,
         });
         setIsSubmitting(false); // Reset isSubmitting if submission fails

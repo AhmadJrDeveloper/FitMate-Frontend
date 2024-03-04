@@ -10,17 +10,17 @@ const Footer = () => {
     animateScroll.scrollToTop();
  };
  return (
-    <footer className="text-white py-5 footer-container">
+    <footer className="text-white py-5 footer-container text-center"> {/* Added text-center class */}
       <Container className='container-style'>
         <Row>
           <Col md={6}>
             <img src={Logo} alt="Logo" height="150" style={{width:"10rem"}} />
-            <p className="mt-3 fs-5" style={{width:"20rem"}}>
-              FitMate: Your ultimate gym companion for personalized workouts, progress tracking, and community support. Join us now!
+            <p className="mt-3 fs-5" >
+              FIT<span className='span-color'>MATE</span> your ultimate gym companion for personalized workouts, progress tracking, and community support. Join us now!
             </p>
           </Col>
           <Col md={6} className='col-container'>
-            <h5>Quick Links</h5>
+            <h5 className='span-color'>Quick Links</h5>
             <ul className="list-unstyled">
             <li><a onClick={scrollToTop} style={{ textDecoration: 'none', color: 'white', cursor: 'pointer' }}>Home</a></li>
               {/* Use ScrollLink for About Us and Contact Us */}

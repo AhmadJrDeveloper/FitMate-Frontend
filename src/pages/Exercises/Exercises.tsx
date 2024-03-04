@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "react-bootstrap/Card";
 import ExerciseModal from "../../AdminDashboard/AdminExercises/ExerciseModal";
@@ -34,7 +34,7 @@ const Exercises = () => {
       setIsLoading(true);
       try {
         let endpoint = `${apiUrl}/exercises`;
-        if (selectedMuscle) {
+        if (selectedMuscle && selectedMuscle !== 'all') {
           endpoint += `/exercise/${selectedMuscle}`;
         }
         const response = await axios.get<Exercise[]>(endpoint);
@@ -110,22 +110,22 @@ const Exercises = () => {
                 {currentExercises.map((exercise, index) => (
                   <Card
                     key={index}
-                    style={{ width: "17rem" }}
                     onClick={() => handleExerciseClick(exercise)}
+                    className="ex-card"
                   >
                     <Card.Img
                       className="gif"
                       variant="top"
                       src={`http://localhost:4000/uploads/${exercise.gif}`}
                     />
-                    <Card.Body>
+                    <Card.Body className="ex-titles">
                       <Card.Title className="admin-card-title">
                         {exercise.name}
                       </Card.Title>
-                      <Card.Text>
+                      <Card.Text style={{fontSize:"1.2rem"}}>
                         {truncateDescription(exercise.description)}
                       </Card.Text>
-                      <Card.Text>{exercise.category.name}</Card.Text>
+                      <Card.Text style={{fontWeight:"bold"}}>{exercise.category.name}</Card.Text>
                       <div className="icons-container"></div>
                     </Card.Body>
                   </Card>

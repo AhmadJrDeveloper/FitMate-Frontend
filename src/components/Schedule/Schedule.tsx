@@ -17,7 +17,7 @@ export interface Exercise {
     _id: string;
     name: string;
   };
-  date: Date; // Add a date field
+  date: Date;
 }
 
 interface Category {

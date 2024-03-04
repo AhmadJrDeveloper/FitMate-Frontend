@@ -32,7 +32,7 @@ const cardData = [
 
 const AboutUs = () => {
   useEffect(() => {
-    AOS.init({ duration: 1000 }); 
+    AOS.init({ duration: 500 }); 
   }, []);
 
   return (
@@ -42,7 +42,7 @@ const AboutUs = () => {
       <h1 className='about-header'>WHY<span className='span-color'> US</span></h1>
       <div className="card-container">
         {cardData.map((card, index) => (
-          <Card className='about-card' key={index} data-aos='fade-left' data-aos-delay={index * 500}>
+          <Card className='about-card' key={index} data-aos='fade-left' data-aos-delay={index * 100}>
             <Card.Img variant="top" src={card.image} />
             <Card.Body>
               <Card.Title className='card-title'>{card.title}</Card.Title>

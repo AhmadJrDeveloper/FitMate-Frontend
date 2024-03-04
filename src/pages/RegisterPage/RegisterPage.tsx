@@ -3,7 +3,7 @@
   import "./RegisterPage.css";
   import { useNavigate} from "react-router-dom";
   import FullLogo from "../../assets/newlogo.jpeg";
-  import { toast } from "react-toastify";
+  import { toast, ToastContainer } from "react-toastify";
   import { jwtDecode, JwtPayload } from "jwt-decode";
   import { FormEvent } from 'react';
   import { useInfo } from '../../utils/AuthContext';
@@ -36,11 +36,15 @@
               lastName,
           });
           console.log(add);
+          setUsername('');
+          setPassword('');
+          setFirstName('');
+          setLastName('');
           // Show success toast
           toast.success("User registered successfully!");
       } catch (err) {
           console.log(err);
-          toast.error("Error registering user. Please try again later.");
+          toast.error("Invalid Username");
       }
   }
 
@@ -76,6 +80,10 @@
       const container = document.getElementById("container");
       if (container) {
          container.classList.add("right-panel-active");
+         setUsername('');
+          setPassword('');
+          setFirstName('');
+          setLastName('');
       }
      };
      
@@ -83,6 +91,10 @@
       const container = document.getElementById("container");
       if (container) {
          container.classList.remove("right-panel-active");
+         setUsername('');
+          setPassword('');
+          setFirstName('');
+          setLastName('');
       }
      };
      
@@ -93,6 +105,8 @@
 
     return (
       <div className="l-wrapper" style={{backgroundColor:"black",height:"100vh"}}>
+            <ToastContainer />
+
 <button className="go-home" onClick={handleGoHomeClick}>
           Go Home
         </button>        <div className="RegisterLoginPage">

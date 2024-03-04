@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import { FaDumbbell, FaRunning, FaWeight, FaHeartbeat } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -10,7 +9,7 @@ interface Props {
 const ExerciseSideBar: React.FC<Props> = ({ onMuscleSelect }) => {
   const navigate = useNavigate();
   const [data, setData] = useState<any[]>([]);
-  const [activeMuscle, setActiveMuscle] = useState<any>(null);
+  const [activeMuscle, setActiveMuscle] = useState<any>({ name: 'all' }); // Set 'all' as default
   const apiUrl = import.meta.env.VITE_APP_API_URL;
 
   useEffect(() => {
@@ -29,9 +28,12 @@ const ExerciseSideBar: React.FC<Props> = ({ onMuscleSelect }) => {
   }, []);
 
   const handleMuscleClick = (muscle: any) => {
-    console.log("kabsne", muscle);
     setActiveMuscle(muscle);
-    navigate(`/exercise/${muscle.name}`);
+    if (muscle.name === 'all') {
+      navigate('/exercises');
+    } else {
+      navigate(`/exercise/${muscle.name}`);
+    }
     onMuscleSelect(muscle.name); // Pass the selected muscle name to the parent component
   };
 
@@ -43,6 +45,29 @@ const ExerciseSideBar: React.FC<Props> = ({ onMuscleSelect }) => {
       >
         <div>
           <ul className="nav nav-pills flex-column mt-3 mt-sm-0">
+            <li
+              key="all"
+              className={`nav-item text-white fs-2 my-1 py-2 py-sm-0`}
+              style={{
+                backgroundColor:
+                  activeMuscle?.name === 'all' ? "rgb(201, 34, 34)" : "inherit",
+              }}
+            >
+              <Link
+                to="/exercises"
+                className="nav-link text-white fs-2"
+                onClick={() => handleMuscleClick({ name: 'all' })}
+              >
+                <span className="ms-2 fs-2 d-sm-block fs-6 d-md-none">
+                  {/* On smaller screens (md and below), use fs-6 */}
+                  All
+                </span>
+                <span className="ms-2 fs-2 d-none d-sm-block">
+                  {/* On larger screens (lg and above), use fs-2 */}
+                  All
+                </span>
+              </Link>
+            </li>
             {data.map((muscle, index) => (
               <li
                 key={index}
@@ -59,7 +84,6 @@ const ExerciseSideBar: React.FC<Props> = ({ onMuscleSelect }) => {
                   className="nav-link text-white fs-2"
                   onClick={() => handleMuscleClick(muscle)}
                 >
-                  {/* Icon and name */}
                   <span className="ms-2 fs-2 d-sm-block fs-6 d-md-none">
                     {/* On smaller screens (md and below), use fs-6 */}
                     {muscle.name}
