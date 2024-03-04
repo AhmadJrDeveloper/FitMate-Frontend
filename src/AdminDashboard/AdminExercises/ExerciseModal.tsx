@@ -16,6 +16,8 @@ interface ExerciseModalProps {
 
 
 const ExerciseModal: React.FC<ExerciseModalProps> = ({ show, exercise, onClose,  }) => {
+  const apiUrl = import.meta.env.VITE_APP_API_URL;
+
   return (
     <Modal show={show} onHide={onClose}>
       <Modal.Header closeButton>
@@ -24,7 +26,7 @@ const ExerciseModal: React.FC<ExerciseModalProps> = ({ show, exercise, onClose, 
       <Modal.Body>
         <p>{exercise.description}</p>
         <p>Category: {exercise.category.name}</p>
-        <img src={`http://localhost:4000/uploads/${exercise.gif}`} alt={exercise.name} style={{ width: '100%' }} />
+        <img src={`${apiUrl}/uploads/${exercise.gif}`} alt={exercise.name} style={{ width: '100%' }} />
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={onClose}>Close</Button>

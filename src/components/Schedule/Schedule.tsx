@@ -217,7 +217,7 @@ const Schedule = () => {
                 <Card.Img
                   className="gif"
                   variant="top"
-                  src={`http://localhost:4000/uploads/${exercise.gif}`}
+                  src={`${apiUrl}/uploads/${exercise.gif}`}
                 />
                 <Card.Body>
                   <Card.Title className="admin-card-title">

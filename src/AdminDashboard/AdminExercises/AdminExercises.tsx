@@ -73,6 +73,7 @@ const AdminExercises = () => {
       try {
         const response = await axios.get<Exercise[]>(`${apiUrl}/exercises`);
         setData(response.data);
+        console.log(response.data);
       } catch (err) {
         console.log(err);
       }
@@ -260,7 +261,7 @@ const AdminExercises = () => {
                 <Card.Img
                   className="gif"
                   variant="top"
-                  src={`http://localhost:4000/uploads/${exercise.gif}`}
+                  src={`${apiUrl}/uploads/${exercise.gif}`}
                 />
                 <Card.Body>
                   <Card.Title className="admin-card-title">

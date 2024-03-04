@@ -151,7 +151,7 @@ const AdminUser = () => {
           data.map((user: User) => (
             <Card key={user._id} className="mb-3" style={{ width: "17.5rem" }}>
               <img
-                src={`http://localhost:4000/uploads/${user.image}`}
+                src={`${apiUrl}/uploads/${user.image}`}
                 className="card-img-top"
                 alt="Admin"
               />

@@ -38,7 +38,7 @@ const Trainer = () => {
             <div className="card-container">
                 {trainers.map((trainer, index) => (
                     <Card className='about-card' key={index} data-aos='fade-right' data-aos-delay={index * 100}>
-                        <Card.Img variant="top" className='trainer-image' src={`http://localhost:4000/uploads/${trainer.image}`} alt="Trainer" />
+                        <Card.Img variant="top" className='trainer-image' src={`${apiUrl}/uploads/${trainer.image}`} alt="Trainer" />
                         <Card.Body>
                             <Card.Title className='card-title'>{trainer.firstName} {trainer.lastName}</Card.Title>
                             <div className="trainer-social-icons">

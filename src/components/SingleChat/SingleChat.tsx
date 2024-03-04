@@ -3,9 +3,11 @@ import './SingleChat.css';
 import { Socket } from 'socket.io-client'; // Import the Socket type
 import io from 'socket.io-client';
 import './SingleChat.css'
-const ENDPOINT = 'http://localhost:4000';
+// const ENDPOINT = 'http://localhost:4000';
+const apiUrl = import.meta.env.VITE_APP_API_URL;
+
 // Initialize socket connection
-const socket: Socket = io(ENDPOINT); // Specify the type for socket
+const socket: Socket = io(apiUrl); // Specify the type for socket
 import Chat from '../Chat/Chat';
 
 
