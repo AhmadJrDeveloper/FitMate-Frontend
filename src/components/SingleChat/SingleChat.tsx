@@ -16,6 +16,7 @@ const SingleChat = () => {
     const [room, setRoom] = useState('5151'); 
     const [joined, setJoined] = useState(false); // Track whether the user has joined the room
     const context = useInfo();
+    console.log(setRoom)
     if (!context) {
         throw new Error('Login component must be used within an AuthProvider');
     }
