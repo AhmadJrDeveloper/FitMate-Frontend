@@ -6,6 +6,7 @@ import {  FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import UpdateModal from "../../components/UpdateModal/UpdateModal";
+import Loader from "../../components/Loader/Loader";
 
 interface Category {
   _id: string;
@@ -110,49 +111,57 @@ const AdminCategory = () => {
 
   return (
     <div className="Category-Container">
-      <div className="Category-Button">
-        <ModalButton
-          ButtonTitle="Add Category"
-          ModalTitle="Add Category"
-          fields={[{ label: "Category Name", stateName: "name", type: "text" }]}
-          onSubmit={handleAdd}
-        />
-      </div>
-      <div className="Category-Table">
-        {data && (
-          <table className="custom-table">
-            <thead>
-              <tr>
-                <th>Category Name</th>
-                <th>Edit/Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.map((category: Category) => (
-                <tr key={category._id}>
-                  <td>{category.name}</td>
-                  <td className="action-icons-container">
-                  <UpdateModal
-                      ModalTitle="Update Category"
-                      ButtonTitle="Update"
-                      fields={[{ label: "Category Name", stateName: "name", type: "text" }]}
-                      initialFormValues={{ name: category.name }}
-                      onSubmit={(formData: any) => handleUpdate(formData, category._id)}
-                    />
-
-                    <FaTrash
-                      className="action-icon"
-                      onClick={() => handleDelete(category._id)}
-                    />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-      </div>
+      {data === null ? (
+        <div className="Loader">
+          <Loader />
+        </div>
+      ) : (
+        <div>
+          <div className="Category-Button">
+            <ModalButton
+              ButtonTitle="Add Category"
+              ModalTitle="Add Category"
+              fields={[{ label: "Category Name", stateName: "name", type: "text" }]}
+              onSubmit={handleAdd}
+            />
+          </div>
+          <div className="Category-Table">
+            {data && (
+              <table className="custom-table">
+                <thead>
+                  <tr>
+                    <th>Category Name</th>
+                    <th>Edit/Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.map((category: Category) => (
+                    <tr key={category._id}>
+                      <td>{category.name}</td>
+                      <td className="action-icons-container">
+                        <UpdateModal
+                          ModalTitle="Update Category"
+                          ButtonTitle="Update"
+                          fields={[{ label: "Category Name", stateName: "name", type: "text" }]}
+                          initialFormValues={{ name: category.name }}
+                          onSubmit={(formData: any) => handleUpdate(formData, category._id)}
+                        />
+                        <FaTrash
+                          className="action-icon"
+                          onClick={() => handleDelete(category._id)}
+                        />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
+  
 };
 
 export default AdminCategory;

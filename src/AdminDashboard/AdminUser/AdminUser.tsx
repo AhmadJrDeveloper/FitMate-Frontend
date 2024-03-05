@@ -154,6 +154,7 @@ const AdminUser = () => {
                 src={`${apiUrl}/uploads/${user.image}`}
                 className="card-img-top"
                 alt="Admin"
+                style={{height:"30vh"}}
               />
               <Card.Body>
                 <Card.Title>{user.username}</Card.Title>

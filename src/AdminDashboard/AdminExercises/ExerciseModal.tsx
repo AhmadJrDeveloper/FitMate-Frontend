@@ -21,7 +21,7 @@ const ExerciseModal: React.FC<ExerciseModalProps> = ({ show, exercise, onClose, 
   return (
     <Modal show={show} onHide={onClose}>
       <Modal.Header closeButton>
-        <Modal.Title>{exercise.name}</Modal.Title>
+        <Modal.Title style={{color:"rgb(201,34,34)"}}>{exercise.name}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <p>{exercise.description}</p>

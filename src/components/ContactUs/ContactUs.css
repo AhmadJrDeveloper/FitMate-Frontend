@@ -35,6 +35,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
     border-radius: 16px; /* Rounded corners */
     background-image: url('../../assets/contactus.jpg');
+    /* background-color: red; */
 }
 
 .Contact-Home-Parent-Form input,
@@ -165,4 +166,12 @@ border-color: var(--primary-color);
       
       .btn-41:active {
         top: 2px;
+      }
+
+
+      @media only screen and (min-width: 769px) and (max-width: 1024px) {
+        .Contact-Home-Parent-Form {
+            width: 70%; /* Adjusted for better balance */
+            /* background-color: blue; */
+        }
       }

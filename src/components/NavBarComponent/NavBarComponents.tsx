@@ -1,4 +1,4 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 import { FaBars, FaTimes } from "react-icons/fa";
@@ -6,21 +6,16 @@ import Logo from "../../assets/newlogo.jpeg";
 import "./NavBarComponent.css";
 
 function NavBarComponent() {
- const [showResponsiveNav, setShowResponsiveNav] = useState(false);
- const location = useLocation();
+  const [showResponsiveNav, setShowResponsiveNav] = useState(false);
+  const location = useLocation();
+  const [selectedLink, setSelectedLink] = useState("");
 
- const toggleNavbar = () => {
-    setShowResponsiveNav(!showResponsiveNav);
- };
-
- const [selectedLink, setSelectedLink] = useState("");
-
- useEffect(() => {
+  useEffect(() => {
     const currentPath = location.pathname;
     setSelectedLink(getLinkKey(currentPath));
- }, [location]);
+  }, [location]);
 
- const getLinkKey = (pathname:any) => {
+  const getLinkKey = (pathname:any) => {
     switch (pathname) {
       case "/":
         return "home";
@@ -35,16 +30,23 @@ function NavBarComponent() {
       default:
         return "";
     }
- };
+  };
 
- return (
+  const toggleNavbar = () => {
+    setShowResponsiveNav(!showResponsiveNav);
+  };
+
+  const navigateToHome = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    toggleNavbar();
+  };
+
+  return (
     <header className="NavBar-Header">
       <div className="Header-Logo">
-      <RouterLink to ={'/'}>
-
-        <img src={Logo} alt="" className="Header-Logo-Image" />
+        <RouterLink to={'/'}>
+          <img src={Logo} alt="" className="Header-Logo-Image" />
         </RouterLink>
-
         <h3 className="Header-Logo-H3">
           FIT<span className="span-color">MATE</span>
         </h3>
@@ -55,28 +57,28 @@ function NavBarComponent() {
             HOME
           </a>
         </RouterLink>
-        {/* Use ScrollLink for About Us and Contact Us */}
         <ScrollLink
-        style={{cursor: "pointer"}}
+          style={{ cursor: "pointer" }}
           to="about-us"
           smooth={true}
           duration={0}
           className={selectedLink === "about-us" ? "active" : ""}
+          onClick={navigateToHome}
         >
           ABOUT
         </ScrollLink>
         <ScrollLink
-          style={{cursor: "pointer"}}
+          style={{ cursor: "pointer" }}
           to="contact-us"
           smooth={true}
           duration={500}
           className={selectedLink === "contact-us" ? "active" : ""}
+          onClick={navigateToHome}
         >
           CONTACT
         </ScrollLink>
-        {/* Keep other links as RouterLink */}
         <RouterLink to={"/exercises"} className={selectedLink === "exercises" ? "active" : ""}>
-          <a style={{ color: selectedLink === "exercises" ? "rgb(201,34,34)" : "" }}>
+          <a style={{ color: selectedLink === "exercises" ? "rgb(201,34,34)" : "" }} >
             EXERCISES
           </a>
         </RouterLink>
@@ -93,7 +95,7 @@ function NavBarComponent() {
         <FaBars />
       </button>
     </header>
- );
+  );
 }
 
 export default NavBarComponent;

@@ -1,8 +1,10 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useInfo } from '../../utils/AuthContext';
-import { FaDumbbell, FaList, FaUser,FaComments } from 'react-icons/fa';
+import { FaDumbbell, FaList, FaUser, FaComments } from 'react-icons/fa';
 import Logo from '../../assets/newlogo.jpeg';
 import './Sidebar.css';
+import io from 'socket.io-client';
+import { useEffect } from 'react';
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -14,6 +16,8 @@ const Sidebar = () => {
   }
 
   const { type, name, setAuth } = context;
+  const apiUrl = import.meta.env.VITE_APP_API_URL;
+  const socket = io(apiUrl);
 
   const handleLogout = () => {
     // Clear token and authentication status from local storage
@@ -23,7 +27,16 @@ const Sidebar = () => {
     navigate('/');
   }
 
-  const isActive = (path:any) => {
+  useEffect(() => {
+    const room = '5151';
+    socket.emit("join_room", room);
+    console.log('admin joined')
+    return () => {
+      socket.disconnect();
+    };
+  }, [socket]);
+
+  const isActive = (path: any) => {
     return location.pathname === path;
   };
 
@@ -44,7 +57,7 @@ const Sidebar = () => {
           </div>
           <a className="text-decoration-none text-white d-flex d-none d-sm-inline align-itemcenter ms-3 mt-2">
             <i className="fs-4 ms-2">
-              <span className="ms-2 fs-1 d-none d-sm-inline">Hello, {type}</span>
+              <span className="ms-2 fs-3 d-none d-sm-inline">Hello, {type}</span>
             </i>
           </a>
           <hr className="text-secondary d-none d-sm-block" />
@@ -54,36 +67,44 @@ const Sidebar = () => {
                 <li className={`nav-item text-white fs-4 my-1 py-2 py-sm-0 ${isActive('/admin/categories') && 'activee'}`}>
                   <Link to="/admin/categories" className="nav-link text-white fs-5">
                     <FaList className="mini-side-logo" />
-                    <span className="ms-2 fs-3 d-none d-sm-inline">Categories</span>
+                    <span className="ms-2 fs-4 d-none d-sm-inline">Categories</span>
                   </Link>
                 </li>
                 <li className={`nav-item text-white fs-4 my-1 py-2 py-sm-0 ${isActive('/admin/exercises') && 'activee'}`}>
                   <Link to="/admin/exercises" className="nav-link text-white fs-5">
                     <FaDumbbell className="mini-side-logo" />
-                    <span className="ms-2 fs-3 d-none d-sm-inline">Exercises</span>
+                    <span className="ms-2 fs-4 d-none d-sm-inline">Exercises</span>
                   </Link>
                 </li>
                 <li className={`nav-item text-white fs-4 my-1 py-2 py-sm-0 ${isActive('/admin/users') && 'activee'}`}>
                   <Link to="/admin/users" className="nav-link text-white fs-5">
                     <FaUser className="mini-side-logo" />
-                    <span className="ms-2 fs-3 d-none d-sm-inline">Users</span>
+                    <span className="ms-2 fs-4 d-none d-sm-inline">Users</span>
                   </Link>
                 </li>
-                <li className="nav-item text-white fs-4 my-1 py-2 py-sm-0">
-                <Link to="/user/chat" className="nav-link text-white fs-5">
-                  <FaComments className="mini-side-logo" />
-                  <span className="ms-2 fs-3 d-none d-sm-inline">Chat</span>
-                </Link>
-              </li>
+                <li className={`nav-item text-white fs-4 my-1 py-2 py-sm-0 ${isActive('/admin/chat') && 'activee'}`}>
+                  <Link to="/admin/chat" className="nav-link text-white fs-5">
+                    <FaComments className="mini-side-logo" />
+                    <span className="ms-2 fs-4 d-none d-sm-inline">Chat</span>
+                  </Link>
+                </li>
               </>
             )}
             {type === 'trainer' && (
-              <li className={`nav-item text-white fs-4 my-1 py-2 py-sm-0 ${isActive('/admin/exercises') && 'active'}`}>
-                <Link to="/admin/exercises" className="nav-link text-white fs-5">
-                  <FaDumbbell className="mini-side-logo" />
-                  <span className="ms-2 fs-3 d-none d-sm-inline">Exercises</span>
-                </Link>
-              </li>
+              <>
+                <li className={`nav-item text-white fs-4 my-1 py-2 py-sm-0 ${isActive('/admin/exercises') && 'active'}`}>
+                  <Link to="/admin/exercises" className="nav-link text-white fs-5">
+                    <FaDumbbell className="mini-side-logo" />
+                    <span className="ms-2 fs-3 d-none d-sm-inline">Exercises</span>
+                  </Link>
+                </li>
+                <li className={`nav-item text-white fs-4 my-1 py-2 py-sm-0 ${isActive('/admin/chat') && 'active'}`}>
+                  <Link to="/admin/chat" className="nav-link text-white fs-5">
+                    <FaComments className="mini-side-logo" />
+                    <span className="ms-2 fs-3 d-none d-sm-inline">Chat</span>
+                  </Link>
+                </li>
+              </>
             )}
           </ul>
         </div>

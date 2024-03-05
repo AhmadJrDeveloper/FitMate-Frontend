@@ -42,8 +42,8 @@ const AdminExercises = () => {
   );
   const [currentPage, setCurrentPage] = useState(1);
   const [exercisesPerPage] = useState(10);
-  const [showModal, setShowModal] = useState(false); // State to track modal visibility
-  const [modalExercise, setModalExercise] = useState<Exercise | null>(null); // State to store the exercise for the modal
+  const [showModal, setShowModal] = useState(false); 
+  const [modalExercise, setModalExercise] = useState<Exercise | null>(null); 
   const apiUrl = import.meta.env.VITE_APP_API_URL;
 
   const handleCategoryFilterChange = (categoryId: string) => {
@@ -68,29 +68,28 @@ const AdminExercises = () => {
     setShowModal(true); // Open the modal
   };
 
+  const fetchData = async () => {
+    try {
+      const response = await axios.get<Exercise[]>(`${apiUrl}/exercises`);
+      setData(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get<Exercise[]>(`${apiUrl}/exercises`);
-        setData(response.data);
-        console.log(response.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
     fetchData();
-  }, [apiUrl]);
+  }, [apiUrl, selectedCategory]);
 
   const handleAdd = async (formData: FormData) => {
     try {
-      
       const add = await axios.post(`${apiUrl}/exercises`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
       if (add.status === 200) {
-        setData((prevData: any) => [...prevData, add.data]);
+        fetchData(); // Fetch data again to reflect the changes
         toast.success("Exercise added successfully!");
       } else {
         toast.error("Failed to add exercise.");
@@ -108,7 +107,7 @@ const AdminExercises = () => {
         text: "You won't be able to revert this!",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: "#0A233F",
+        confirmButtonColor: "Black",
         cancelButtonColor: "#d33",
         confirmButtonText: "Yes, delete it!",
       });
@@ -126,7 +125,7 @@ const AdminExercises = () => {
             title: "Deleted!",
             text: "Your file has been deleted.",
             icon: "success",
-            confirmButtonColor: "#0A233F",
+            confirmButtonColor: "Black",
           });
         }
       }
@@ -136,37 +135,29 @@ const AdminExercises = () => {
     }
   };
 
-  const handleUpdate = async (formData: any, id: string) => {
-    
-    try {
-     
-      const updateResponse = await axios.put(
-        `${apiUrl}/exercises/${id}`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      if (updateResponse.status === 200) {
-        setData((prevData: Exercise[] | null) => {
-          return prevData?.map((data: Exercise) => {
-            if (data._id === id) {
-              return { ...data, ...updateResponse.data };
-            }
-            return data;
-          }) || null;
-        });
-        toast.success("Exercise updated successfully!");
-      } else {
-        toast.error("Failed to update exercise.");
+ const handleUpdate = async (formData: any, id: string) => {
+  try {
+    const updateResponse = await axios.put(
+      `${apiUrl}/exercises/${id}`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       }
-    } catch (error) {
-      console.error(error);
-      toast.error("An error occurred while updating the exercise.");
+    );
+    if (updateResponse.status === 200) {
+      fetchData(); 
+      toast.success("Exercise updated successfully!");
+    } else {
+      toast.error("Failed to update exercise.");
     }
-  };
+  } catch (error) {
+    console.error(error);
+    toast.error("An error occurred while updating the exercise.");
+  }
+};
+
 
   // Get current exercises
   const indexOfLastExercise = currentPage * exercisesPerPage;
@@ -217,7 +208,7 @@ const AdminExercises = () => {
                 ButtonTitle="Add Exercise"
                 ModalTitle="Add Exercise"
                 fields={[
-                  { label: "Exercise Name", stateName: "name", type: "text" },
+                  { label: "Exercise Name", stateName: "name", type: "text",required: true },
                   {
                     label: "Exercise Description",
                     stateName: "description",
@@ -256,12 +247,13 @@ const AdminExercises = () => {
               <Card
                 key={index}
                 style={{ width: "16rem" }}
-                onClick={() => handleExerciseClick(exercise)} 
               >
                 <Card.Img
                   className="gif"
                   variant="top"
                   src={`${apiUrl}/uploads/${exercise.gif}`}
+                  onClick={() => handleExerciseClick(exercise)} 
+
                 />
                 <Card.Body>
                   <Card.Title className="admin-card-title">

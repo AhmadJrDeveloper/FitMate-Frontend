@@ -34,7 +34,7 @@ const Trainer = () => {
 
     return (
         <div className='aboutus-container'>
-            <h1 className='about-header'>OUR<span className='span-color'> TRAINERS</span></h1>
+            <h1 className='about-header' style={{textAlign:"center"}}>OUR<span className='span-color'> TRAINERS</span></h1>
             <div className="card-container">
                 {trainers.map((trainer, index) => (
                     <Card className='about-card' key={index} data-aos='fade-right' data-aos-delay={index * 100}>

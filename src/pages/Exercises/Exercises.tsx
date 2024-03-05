@@ -39,6 +39,8 @@ const Exercises = () => {
         }
         const response = await axios.get<Exercise[]>(endpoint);
         setData(response.data);
+        setCurrentPage(1)
+        console.log(response.data);
       } catch (err) {
         console.log(err);
       } finally {
@@ -57,8 +59,11 @@ const Exercises = () => {
   const currentExercises =
     data?.slice(indexOfFirstExercise, indexOfLastExercise) || [];
 
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
-
+    const paginate = (pageNumber: number) => {
+      setCurrentPage(1);
+      setCurrentPage(pageNumber);
+    };
+    
   const truncateDescription = (description: string) => {
     if (description.length > 37) {
       return description.substring(0, 30) + "...";

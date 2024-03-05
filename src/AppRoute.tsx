@@ -13,6 +13,7 @@ import RegisterLogin from './pages/RegisterPage/RegisterPage';
 import AdminLogin from "./pages/AdminLogin";
 import { UserProtectedRoute } from "./utils/ProtectedRoute";
 import History from "./History/History";
+import './Route.css'
 const AppRoute = () => {
  return (
     <Router>
@@ -31,7 +32,7 @@ const AppRoute = () => {
 
 const AdminWithSidebar = () => {
  return (
-<div style={{ display: "flex", flexDirection: "row", background: "transparent" }}>
+<div className="ROUTE-WRAPPER">
       
       <Sidebar />
       <div className="admin-with-side-wrap" style={{marginLeft:"5rem"}}>
@@ -50,6 +51,7 @@ const AdminWithSidebar = () => {
 
 const UserWithSidebar = () => {
   return (
+    <div>
      <div style={{ display: "flex", flexDirection: "row" }}>
        <UserSideBar />
        <Routes>
@@ -58,6 +60,7 @@ const UserWithSidebar = () => {
          <Route path="chat" element={<SingleChat />} />
 
        </Routes>
+     </div>
      </div>
   );
  };

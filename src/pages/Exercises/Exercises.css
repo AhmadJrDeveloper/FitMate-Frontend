@@ -1,6 +1,6 @@
-.side-content-wrapper {
+/* .side-content-wrapper {
     display: flex;
-}
+} */
 .ex-card:hover {
     transform: scale(1.05) !important; 
     transition: transform 0.3s ease !important;

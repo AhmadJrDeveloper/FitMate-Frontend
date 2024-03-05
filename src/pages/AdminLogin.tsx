@@ -10,6 +10,8 @@ import { useInfo } from "../utils/AuthContext";
 interface CustomJwtPayload extends JwtPayload {
   type: string;
   id: string;
+  firstName:string;
+    lastName:string;  
 }
 
 const AdminLogin = () => {
@@ -18,7 +20,7 @@ const AdminLogin = () => {
   if (!context) {
     throw new Error('Login component must be used within an AuthProvider');
   }
-  const { setId, setAuth, setType } = context;
+  const { setId, setAuth, setType,setName } = context;
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const apiUrl = import.meta.env.VITE_APP_API_URL;
@@ -40,6 +42,8 @@ const AdminLogin = () => {
       setType(decoded.type);
       setId(decoded.id);
       setAuth(true);
+      setName(decoded.firstName + ' ' + decoded.lastName)
+
       
       toast.success("Logged in successfully!");
       navigate('/admin');

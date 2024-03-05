@@ -7,6 +7,9 @@ import { FaCheck } from "react-icons/fa";
 import ExerciseModal from "../../AdminDashboard/AdminExercises/ExerciseModal";
 import "../../AdminDashboard/AdminExercises/AdminExercises.css";
 import { useInfo } from "../../utils/AuthContext";
+import { toast } from 'react-toastify';
+
+import './Schedule.css'
 
 export interface Exercise {
   _id: string;
@@ -37,7 +40,7 @@ const Schedule = () => {
   const [categories, setCategories] = useState<Category[] | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [exercisesPerPage] = useState(8);
+  const [exercisesPerPage] = useState(10);
   const [showModal, setShowModal] = useState(false);
   const [modalExercise, setModalExercise] = useState<Exercise | null>(null);
   const [scheduleCreationMode, setScheduleCreationMode] = useState(false);
@@ -120,11 +123,12 @@ const Schedule = () => {
   };
 
   const toggleScheduleCreationMode = () => {
+    // Clear selected exercises
+    setSelectedExerciseIds([]);
+    // Toggle the creation mode
     setScheduleCreationMode(!scheduleCreationMode);
-    if (!scheduleCreationMode) {
-      setSelectedExerciseIds([]);
-    }
   };
+  
 
   const saveSchedule = () => {
     setShowScheduleNameModal(true);
@@ -150,15 +154,20 @@ const Schedule = () => {
     try {
       await axios.post(`${apiUrl}/schedules`, scheduleData);
       // Handle success or navigate to another page
+      toast.success('Schedule added successfully!');
     } catch (error) {
       // Handle error
       console.error('Error creating schedule:', error);
+      toast.error('Error adding schedule. Please try again.');
     }
     
     setSelectedExerciseIds([]);
     setScheduleCreationMode(false);
     setShowScheduleNameModal(false);
   };
+  
+
+  
   
   
   
@@ -170,7 +179,7 @@ const Schedule = () => {
     setShowModal(false);
   };
   return (
-    <div className="exercises-container">
+    <div className="schedule-container">
       {data === null || categories === null ? (
         <div className="Loader">
           <Loader />
@@ -187,12 +196,14 @@ const Schedule = () => {
           )}
           <div className="button-container">
             <div className="Exercise-Button">
-              <button onClick={toggleScheduleCreationMode}>
-                {scheduleCreationMode ? "Finish Creating Schedule" : "Create Schedule"}
-              </button>
+            <button onClick={toggleScheduleCreationMode} className="create-schedule-button">
+  {scheduleCreationMode ? "Cancel" : "Create Schedule"}
+</button>
+
               {scheduleCreationMode && (
-                <button onClick={saveSchedule}>Save Schedule</button>
+                <button onClick={saveSchedule} className="create-schedule-button">Save Schedule</button>
               )}
+              
             </div>
             <select
               className="select-exercise"
@@ -211,7 +222,7 @@ const Schedule = () => {
             {currentExercises.map((exercise: Exercise, index: number) => (
               <Card
                 key={index}
-                style={{ width: "18rem", border: isSelected(exercise) ? "2px solid #007bff" : "none" }}
+                style={{ width: "17rem", border: isSelected(exercise) ? "2px solid rgb(201,34,34)" : "none" }}
                 onClick={() => handleExerciseClick(exercise)}
               >
                 <Card.Img
@@ -294,7 +305,7 @@ const Schedule = () => {
           <Button variant="secondary" onClick={() => setShowScheduleNameModal(false)}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleScheduleNameSubmit}>
+          <Button variant="primary" style={{backgroundColor:"rgb(201,34,34)" ,border:"none"}} onClick={handleScheduleNameSubmit}>
             Save Changes
           </Button>
         </Modal.Footer>

@@ -1,3 +1,4 @@
+import  { useState } from 'react';
 import Logo from "../../assets/newlogo.jpeg";
 import { FaDumbbell,FaComments,FaHistory } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
@@ -8,6 +9,7 @@ import "./UserSideBar.css";
 const UserSideBar = () => {
   const navigate = useNavigate();
   const context = useInfo();
+  const [selectedItem, setSelectedItem] = useState('');
 
   if (!context) {
     throw new Error('Login component must be used within an AuthProvider');
@@ -21,10 +23,14 @@ const UserSideBar = () => {
     navigate('/');
   };
 
+  const handleItemClick = (item:any) => {
+    setSelectedItem(item);
+  };
+
   return (
     <div className="row">
       <div
-        className="bg-dark-custom col-auto col-md-12 min-vh-100 d-flex justify-content-between flex-column"
+        className="bg-dark-custom col-auto col-md-12 min-vh-100 d-flex justify-content-between flex-column "
         style={{ backgroundColor: "black" }}
       >
         <div>
@@ -46,20 +52,20 @@ const UserSideBar = () => {
           </a>
           <hr className="text-secondary d-none d-sm-block" />
           <ul className="nav nav-pills flex-column mt-3 mt-sm-0">
-              <li className="nav-item text-white fs-4 my-1 py-2 py-sm-0">
-                <Link to="/user/addschedule" className="nav-link text-white fs-5">
+              <li className={`nav-item text-white fs-4 my-1 py-2 py-sm-0 ${selectedItem === 'schedule' ? 'selected-item' : ''}`}>
+                <Link to="/user/addschedule" className="nav-link text-white fs-5" onClick={() => handleItemClick('schedule')}>
                   <FaDumbbell className="mini-side-logo" />
                   <span className="ms-2 fs-3 d-none d-sm-inline">Schedule</span>
                 </Link>
               </li>
-              <li className="nav-item text-white fs-4 my-1 py-2 py-sm-0">
-                <Link to="/user/history" className="nav-link text-white fs-5">
+              <li className={`nav-item text-white fs-4 my-1 py-2 py-sm-0 ${selectedItem === 'history' ? 'selected-item' : ''}`}>
+                <Link to="/user/history" className="nav-link text-white fs-5" onClick={() => handleItemClick('history')}>
                   <FaHistory className="mini-side-logo" />
                   <span className="ms-2 fs-3 d-none d-sm-inline">History</span>
                 </Link>
               </li>
-              <li className="nav-item text-white fs-4 my-1 py-2 py-sm-0">
-                <Link to="/user/chat" className="nav-link text-white fs-5">
+              <li className={`nav-item text-white fs-4 my-1 py-2 py-sm-0 ${selectedItem === 'chat' ? 'selected-item' : ''}`}>
+                <Link to="/user/chat" className="nav-link text-white fs-5" onClick={() => handleItemClick('chat')}>
                   <FaComments className="mini-side-logo" />
                   <span className="ms-2 fs-3 d-none d-sm-inline">Chat</span>
                 </Link>

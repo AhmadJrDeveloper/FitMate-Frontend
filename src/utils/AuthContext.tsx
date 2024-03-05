@@ -60,11 +60,11 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   console.log(id);
 
   useEffect(() => {
-    console.log('the updated id in the context', id);
-    console.log('the updated auth in the context', auth);
-    console.log('the updated role in the context', type);
+    // console.log('the updated id in the context', id);
+    // console.log('the updated auth in the context', auth);
+    // console.log('the updated role in the context', type);
     console.log('firstName', name);
-    console.log('userAUth',userAuth)
+    // console.log('userAUth',userAuth)
   }, [id, auth, type,name,userAuth]);
 
   return (
