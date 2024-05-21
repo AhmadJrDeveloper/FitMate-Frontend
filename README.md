@@ -53,7 +53,7 @@ FITMATE is a comprehensive fitness platform designed to assist beginners in the 
 - Manage exercises on the website, including adding, updating, deleting, and editing exercises.
 
 ## Checkout the project:
--Please wait for 60 to 90 seconds until the project run for the first time because I am hosting it on a free service.
--https://fit-mate-frontend-zk3v.vercel.app/
+- Please wait for 60 to 90 seconds until the project run for the first time because I am hosting it on a free service.
+- https://fit-mate-frontend-zk3v.vercel.app/
 
 
